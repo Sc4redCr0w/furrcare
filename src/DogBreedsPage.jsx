@@ -1,7 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 
-const DogBreedsPage = ({ onGoHome }) => {
+const DogBreedsPage = ({ onGoHome, onAdoptNow }) => {
   const dogBreeds = [
     {
       id: 1,
@@ -74,6 +74,7 @@ const DogBreedsPage = ({ onGoHome }) => {
               animate={{ x: 0, opacity: 1 }}
               transition={{ duration: 0.8 }}
               className="space-y-8"
+              style={{ pointerEvents: 'auto' }}
             >
               <div className="space-y-4">
                 <div className="text-orange-400 text-6xl">»»»»</div>
@@ -94,8 +95,12 @@ const DogBreedsPage = ({ onGoHome }) => {
                   Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam
                 </p>
                 
-                <button className="bg-orange-400 hover:bg-orange-500 text-black px-8 py-3 rounded-full font-bold transition-colors duration-300 flex items-center gap-2">
-                  BOOK NOW
+                <button 
+                  onClick={onAdoptNow}
+                  className="bg-orange-400 hover:bg-orange-500 text-black px-8 py-3 rounded-full font-bold transition-colors duration-300 flex items-center gap-2"
+                  style={{ pointerEvents: 'auto', position: 'relative', zIndex: 10 }}
+                >
+                  ADOPT NOW
                   <span className="text-xl">▶</span>
                 </button>
               </div>
