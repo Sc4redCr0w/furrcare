@@ -33,8 +33,8 @@ const HomePage = ({ user, onLogout }) => {
       <main className="main-content max-w-6xl mx-auto px-8 py-16">
         {/* Hero Section */}
         <section className="hero-section mb-16">
-          <div className="hero-content grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-            <div className="hero-text p-10 border-2 border-white/20 rounded-3xl bg-white/5 backdrop-blur-sm">
+          <div className="hero-content grid grid-cols-1 items-center">
+            <div className="hero-text p-10 border-2 border-white/20 rounded-3xl bg-white/5 backdrop-blur-sm text-center">
               <h1 className="text-4xl lg:text-6xl font-bold leading-tight mb-8 text-white">
                 Paws, Claws, and Endless Love
               </h1>
@@ -46,37 +46,37 @@ const HomePage = ({ user, onLogout }) => {
                 Learn More
               </button>
             </div>
-            <div className="hero-image rounded-3xl overflow-hidden">
-              <img 
-                src="/dog.png" 
-                alt="Pet care" 
-                className="main-hero-img w-full h-96 object-cover"
-              />
-            </div>
           </div>
         </section>
 
         {/* Pet Gallery */}
-        <section className="pet-gallery grid grid-cols-1 md:grid-cols-3 gap-8">
+        <section className="pet-gallery grid grid-cols-1 md:grid-cols-4 gap-8">
+          <div className="pet-card rounded-3xl overflow-hidden hover:transform hover:-translate-y-2 transition-transform duration-300">
+            <img 
+              src="/dog.png" 
+              alt="Happy dogs" 
+              className="pet-image w-full h-64 object-cover rounded-lg hover:outline hover:outline-4 hover:outline-white transition-all duration-300"
+            />
+          </div>
           <div className="pet-card rounded-3xl overflow-hidden hover:transform hover:-translate-y-2 transition-transform duration-300">
             <img 
               src="/cat.png" 
               alt="Happy cats" 
-              className="pet-image w-full h-64 object-cover"
+              className="pet-image w-full h-64 object-cover rounded-lg hover:outline hover:outline-4 hover:outline-white transition-all duration-300"
             />
           </div>
           <div className="pet-card rounded-3xl overflow-hidden hover:transform hover:-translate-y-2 transition-transform duration-300">
             <img 
               src="/rabbit.png" 
               alt="Pet rabbits" 
-              className="pet-image w-full h-64 object-cover"
+              className="pet-image w-full h-64 object-cover rounded-lg hover:outline hover:outline-4 hover:outline-white transition-all duration-300"
             />
           </div>
           <div className="pet-card rounded-3xl overflow-hidden hover:transform hover:-translate-y-2 transition-transform duration-300">
             <img 
               src="/turtle.png" 
               alt="Pet turtles" 
-              className="pet-image w-full h-64 object-cover"
+              className="pet-image w-full h-64 object-cover rounded-lg hover:outline hover:outline-4 hover:outline-white transition-all duration-300"
             />
           </div>
         </section>
