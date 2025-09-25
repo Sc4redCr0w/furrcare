@@ -1,6 +1,6 @@
 import React from 'react';
 
-const HomePage = ({ user, onLogout }) => {
+const HomePage = ({ user, onLogout, onAnimalClick }) => {
   return (
     <div className="home-page bg-black text-white min-h-screen">
       {/* Navigation Header */}
@@ -51,7 +51,10 @@ const HomePage = ({ user, onLogout }) => {
 
         {/* Pet Gallery */}
         <section className="pet-gallery grid grid-cols-1 md:grid-cols-4 gap-8 p-4">
-          <div className="pet-card rounded-3xl hover:transform hover:-translate-y-2 transition-transform duration-300 relative group">
+          <div 
+            className="pet-card rounded-3xl hover:transform hover:-translate-y-2 transition-transform duration-300 relative group cursor-pointer"
+            onClick={() => onAnimalClick('dog')}
+          >
             <img 
               src="/dog.png" 
               alt="Happy dogs" 
@@ -61,7 +64,10 @@ const HomePage = ({ user, onLogout }) => {
               <span className="text-white text-2xl font-bold">DOG</span>
             </div>
           </div>
-          <div className="pet-card rounded-3xl hover:transform hover:-translate-y-2 transition-transform duration-300 relative group">
+          <div 
+            className="pet-card rounded-3xl hover:transform hover:-translate-y-2 transition-transform duration-300 relative group cursor-pointer"
+            onClick={() => onAnimalClick('cat')}
+          >
             <img 
               src="/cat.png" 
               alt="Happy cats" 
@@ -71,7 +77,10 @@ const HomePage = ({ user, onLogout }) => {
               <span className="text-white text-2xl font-bold">CAT</span>
             </div>
           </div>
-          <div className="pet-card rounded-3xl hover:transform hover:-translate-y-2 transition-transform duration-300 relative group">
+          <div 
+            className="pet-card rounded-3xl hover:transform hover:-translate-y-2 transition-transform duration-300 relative group cursor-pointer"
+            onClick={() => onAnimalClick('rabbit')}
+          >
             <img 
               src="/rabbit.png" 
               alt="Pet rabbits" 
@@ -81,7 +90,10 @@ const HomePage = ({ user, onLogout }) => {
               <span className="text-white text-2xl font-bold">RABBIT</span>
             </div>
           </div>
-          <div className="pet-card rounded-3xl hover:transform hover:-translate-y-2 transition-transform duration-300 relative group">
+          <div 
+            className="pet-card rounded-3xl hover:transform hover:-translate-y-2 transition-transform duration-300 relative group cursor-pointer"
+            onClick={() => onAnimalClick('turtle')}
+          >
             <img 
               src="/turtle.png" 
               alt="Pet turtles" 

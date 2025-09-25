@@ -1,10 +1,15 @@
 import React, { useState, useEffect } from "react";
 import Login from "./Login.jsx";
 import HomePage from "./HomePage.jsx";
+import DogBreedsPage from "./DogBreedsPage.jsx";
+import CatBreedsPage from "./CatBreedsPage.jsx";
+import RabbitBreedsPage from "./RabbitBreedsPage.jsx";
+import TurtleBreedsPage from "./TurtleBreedsPage.jsx";
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [currentUser, setCurrentUser] = useState(null);
+  const [currentPage, setCurrentPage] = useState('home');
 
   // Check if user is already logged in on app start
   useEffect(() => {
@@ -18,21 +23,46 @@ function App() {
   const handleLogin = (user) => {
     setCurrentUser(user);
     setIsLoggedIn(true);
+    setCurrentPage('home');
   };
 
   const handleLogout = () => {
     localStorage.removeItem('currentUser');
     setCurrentUser(null);
     setIsLoggedIn(false);
+    setCurrentPage('home');
+  };
+
+  const handleAnimalClick = (animalType) => {
+    setCurrentPage(animalType);
+  };
+
+  const handleGoHome = () => {
+    setCurrentPage('home');
+  };
+
+  const renderCurrentPage = () => {
+    if (!isLoggedIn) {
+      return <Login onLogin={handleLogin} />;
+    }
+
+    switch (currentPage) {
+      case 'dog':
+        return <DogBreedsPage onGoHome={handleGoHome} />;
+      case 'cat':
+        return <CatBreedsPage onGoHome={handleGoHome} />;
+      case 'rabbit':
+        return <RabbitBreedsPage onGoHome={handleGoHome} />;
+      case 'turtle':
+        return <TurtleBreedsPage onGoHome={handleGoHome} />;
+      default:
+        return <HomePage user={currentUser} onLogout={handleLogout} onAnimalClick={handleAnimalClick} />;
+    }
   };
 
   return (
     <>
-      {isLoggedIn ? (
-        <HomePage user={currentUser} onLogout={handleLogout} />
-      ) : (
-        <Login onLogin={handleLogin} />
-      )}
+      {renderCurrentPage()}
     </>
   );
 }
