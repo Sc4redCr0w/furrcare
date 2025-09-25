@@ -92,8 +92,8 @@ const Login = ({ onLogin }) => {
       <div className="flex flex-col md:flex-row items-center justify-center w-full px-6 relative z-10">
         {/* Images (animated entry) */}
         <motion.div
-          initial={{ x: -200, y: -200, opacity: 0 }}
-          animate={{ x: 0, y: 0, opacity: 1 }}
+          initial={{ x: -300, opacity: 0 }}
+          animate={{ x: 0, opacity: 1 }}
           transition={{ duration: 1, ease: "easeOut" }}
           className="flex justify-center md:w-1/2 mb-8 md:mb-0"
         >

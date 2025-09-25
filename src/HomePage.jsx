@@ -55,7 +55,7 @@ const HomePage = ({ user, onLogout }) => {
             <img 
               src="/dog.png" 
               alt="Happy dogs" 
-              className="pet-image w-full h-64 object-cover rounded-lg hover:outline hover:outline-4 hover:outline-white transition-all duration-300 group-hover:brightness-50"
+              className="pet-image w-full h-64 object-cover rounded-lg hover:shadow-2xl hover:shadow-white/50 transition-all duration-300 group-hover:brightness-50"
             />
             <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
               <span className="text-white text-2xl font-bold">DOG</span>
@@ -65,7 +65,7 @@ const HomePage = ({ user, onLogout }) => {
             <img 
               src="/cat.png" 
               alt="Happy cats" 
-              className="pet-image w-full h-64 object-cover rounded-lg hover:outline hover:outline-4 hover:outline-white transition-all duration-300 group-hover:brightness-50"
+              className="pet-image w-full h-64 object-cover rounded-lg hover:shadow-2xl hover:shadow-white/50 transition-all duration-300 group-hover:brightness-50"
             />
             <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
               <span className="text-white text-2xl font-bold">CAT</span>
@@ -75,7 +75,7 @@ const HomePage = ({ user, onLogout }) => {
             <img 
               src="/rabbit.png" 
               alt="Pet rabbits" 
-              className="pet-image w-full h-64 object-cover rounded-lg hover:outline hover:outline-4 hover:outline-white transition-all duration-300 group-hover:brightness-50"
+              className="pet-image w-full h-64 object-cover rounded-lg hover:shadow-2xl hover:shadow-white/50 transition-all duration-300 group-hover:brightness-50"
             />
             <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
               <span className="text-white text-2xl font-bold">RABBIT</span>
@@ -85,7 +85,7 @@ const HomePage = ({ user, onLogout }) => {
             <img 
               src="/turtle.png" 
               alt="Pet turtles" 
-              className="pet-image w-full h-64 object-cover rounded-lg hover:outline hover:outline-4 hover:outline-white transition-all duration-300 group-hover:brightness-50"
+              className="pet-image w-full h-64 object-cover rounded-lg hover:shadow-2xl hover:shadow-white/50 transition-all duration-300 group-hover:brightness-50"
             />
             <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
               <span className="text-white text-2xl font-bold">TURTLE</span>
