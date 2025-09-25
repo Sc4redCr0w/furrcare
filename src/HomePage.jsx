@@ -48,7 +48,7 @@ const HomePage = ({ user, onLogout }) => {
             </div>
             <div className="hero-image rounded-3xl overflow-hidden">
               <img 
-                src="/temple_bg_2.png" 
+                src="/dog.png" 
                 alt="Pet care" 
                 className="main-hero-img w-full h-96 object-cover"
               />
@@ -60,22 +60,22 @@ const HomePage = ({ user, onLogout }) => {
         <section className="pet-gallery grid grid-cols-1 md:grid-cols-3 gap-8">
           <div className="pet-card rounded-3xl overflow-hidden hover:transform hover:-translate-y-2 transition-transform duration-300">
             <img 
-              src="/login_pet.png" 
-              alt="Happy pets" 
+              src="/cat.png" 
+              alt="Happy cats" 
               className="pet-image w-full h-64 object-cover"
             />
           </div>
           <div className="pet-card rounded-3xl overflow-hidden hover:transform hover:-translate-y-2 transition-transform duration-300">
             <img 
-              src="/trinityfest2.jpeg" 
-              alt="Pet care services" 
+              src="/rabbit.png" 
+              alt="Pet rabbits" 
               className="pet-image w-full h-64 object-cover"
             />
           </div>
           <div className="pet-card rounded-3xl overflow-hidden hover:transform hover:-translate-y-2 transition-transform duration-300">
             <img 
-              src="/temple_bg.jpg" 
-              alt="Pet training" 
+              src="/turtle.png" 
+              alt="Pet turtles" 
               className="pet-image w-full h-64 object-cover"
             />
           </div>
