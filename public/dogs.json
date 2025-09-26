@@ -1,0 +1,122 @@
+[
+  {
+    "id": 1,
+    "name": "Buddy",
+    "breed": "Golden Retriever",
+    "age": 3,
+    "location": "New York",
+    "vaccination": "yes",
+    "image": "/dog.png",
+    "description": "Friendly and energetic dog, great with kids and other pets."
+  },
+  {
+    "id": 2,
+    "name": "Luna",
+    "breed": "German Shepherd",
+    "age": 2,
+    "location": "California",
+    "vaccination": "yes",
+    "image": "/dog.png",
+    "description": "Intelligent and loyal companion, well-trained and protective."
+  },
+  {
+    "id": 3,
+    "name": "Max",
+    "breed": "Labrador",
+    "age": 5,
+    "location": "Texas",
+    "vaccination": "no",
+    "image": "/dog.png",
+    "description": "Gentle giant with a calm temperament, loves swimming and fetching."
+  },
+  {
+    "id": 4,
+    "name": "Bella",
+    "breed": "Bulldog",
+    "age": 4,
+    "location": "Florida",
+    "vaccination": "yes",
+    "image": "/dog.png",
+    "description": "Sweet and affectionate, enjoys lounging and short walks."
+  },
+  {
+    "id": 5,
+    "name": "Charlie",
+    "breed": "Beagle",
+    "age": 1,
+    "location": "New York",
+    "vaccination": "yes",
+    "image": "/dog.png",
+    "description": "Playful puppy with lots of energy, loves exploring and treats."
+  },
+  {
+    "id": 6,
+    "name": "Rocky",
+    "breed": "Rottweiler",
+    "age": 6,
+    "location": "Illinois",
+    "vaccination": "no",
+    "image": "/dog.png",
+    "description": "Strong and confident, needs an experienced owner."
+  },
+  {
+    "id": 7,
+    "name": "Daisy",
+    "breed": "Poodle",
+    "age": 2,
+    "location": "California",
+    "vaccination": "yes",
+    "image": "/dog.png",
+    "description": "Smart and hypoallergenic, perfect for families with allergies."
+  },
+  {
+    "id": 8,
+    "name": "Tucker",
+    "breed": "Husky",
+    "age": 4,
+    "location": "Colorado",
+    "vaccination": "yes",
+    "image": "/dog.png",
+    "description": "High-energy working dog, loves cold weather and running."
+  },
+  {
+    "id": 9,
+    "name": "Molly",
+    "breed": "Golden Retriever",
+    "age": 7,
+    "location": "Washington",
+    "vaccination": "yes",
+    "image": "/dog.png",
+    "description": "Senior dog with a gentle heart, looking for a quiet home."
+  },
+  {
+    "id": 10,
+    "name": "Zeus",
+    "breed": "German Shepherd",
+    "age": 3,
+    "location": "Texas",
+    "vaccination": "no",
+    "image": "/dog.png",
+    "description": "Protective and intelligent, great for security and companionship."
+  },
+  {
+    "id": 11,
+    "name": "Sadie",
+    "breed": "Border Collie",
+    "age": 2,
+    "location": "Oregon",
+    "vaccination": "yes",
+    "image": "/dog.png",
+    "description": "Extremely smart and active, needs mental stimulation."
+  },
+  {
+    "id": 12,
+    "name": "Cooper",
+    "breed": "Labrador",
+    "age": 1,
+    "location": "Florida",
+    "vaccination": "yes",
+    "image": "/dog.png",
+    "description": "Young and enthusiastic, loves water and outdoor activities."
+  }
+]

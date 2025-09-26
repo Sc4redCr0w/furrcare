@@ -1,0 +1,8 @@
+[
+  {"id":1,"name":"Misty","breed":"Persian","age":3,"location":"New York","vaccination":"yes","image":"/cat.png","description":"Calm and affectionate, enjoys cozy naps and gentle play."},
+  {"id":2,"name":"Shadow","breed":"Siamese","age":2,"location":"California","vaccination":"yes","image":"/cat.png","description":"Vocal and intelligent, bonds closely with people."},
+  {"id":3,"name":"Leo","breed":"Maine Coon","age":5,"location":"Texas","vaccination":"no","image":"/cat.png","description":"Large and friendly, a gentle giant who loves attention."},
+  {"id":4,"name":"Nala","breed":"Bengal","age":1,"location":"Florida","vaccination":"yes","image":"/cat.png","description":"Active and curious, loves climbing and exploring."},
+  {"id":5,"name":"Cleo","breed":"Sphynx","age":4,"location":"Illinois","vaccination":"yes","image":"/cat.png","description":"Affectionate and quirky, enjoys warm blankets and cuddles."},
+  {"id":6,"name":"Chloe","breed":"Ragdoll","age":6,"location":"Washington","vaccination":"no","image":"/cat.png","description":"Laid-back and cuddly, enjoys being held and pampered."}
+]
