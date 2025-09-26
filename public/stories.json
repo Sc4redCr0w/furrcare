@@ -1,0 +1,112 @@
+[
+  {
+    "id": 1,
+    "petName": "Luna",
+    "petType": "cat",
+    "breed": "Maine Coon",
+    "adopterName": "Sarah Johnson",
+    "adoptionDate": "2024-08-15",
+    "story": "Luna was a shy cat when she first arrived at our shelter. She spent most of her time hiding in the corner of her kennel. But Sarah saw something special in her gentle eyes. After weeks of patient visits and slow bonding, Luna finally opened up. Now, six months later, Luna is the queen of Sarah's home, greeting visitors with confident purrs and showing off her playful side. Sarah says Luna has brought so much joy and companionship to her life, especially during quiet evenings when Luna curls up on her lap while she reads.",
+    "image": "cat.png",
+    "location": "Seattle, WA"
+  },
+  {
+    "id": 2,
+    "petName": "Max",
+    "petType": "dog",
+    "breed": "Golden Retriever",
+    "adopterName": "The Martinez Family",
+    "adoptionDate": "2024-09-02",
+    "story": "Max came to us as a senior dog, 8 years old and overlooked by many families looking for puppies. The Martinez family, however, knew that senior dogs have so much love to give. Their two children, ages 10 and 12, immediately fell in love with Max's gentle nature and patient demeanor. Max has become the perfect family companion - he walks the kids to the bus stop every morning, plays fetch in the backyard, and serves as the most loyal study buddy during homework time. The family says adopting Max was the best decision they ever made.",
+    "image": "dog.png",
+    "location": "Austin, TX"
+  },
+  {
+    "id": 3,
+    "petName": "Cocoa",
+    "petType": "rabbit",
+    "breed": "Holland Lop",
+    "adopterName": "Emily Chen",
+    "adoptionDate": "2024-07-28",
+    "story": "Cocoa was found abandoned in a park, scared and malnourished. After months of rehabilitation at our shelter, she was ready for a loving home. Emily, a college student studying veterinary medicine, was looking for a quiet companion for her apartment. Cocoa turned out to be the perfect study partner - she's litter trained, loves to hop around Emily's living room, and has the most adorable way of asking for treats by standing on her hind legs. Emily says Cocoa has taught her so much about rabbit behavior and care, making her an even better future veterinarian.",
+    "image": "rabbit.png",
+    "location": "Portland, OR"
+  },
+  {
+    "id": 4,
+    "petName": "Buddy",
+    "petType": "dog",
+    "breed": "Mixed Breed",
+    "adopterName": "Robert Williams",
+    "adoptionDate": "2024-06-12",
+    "story": "Buddy was rescued from a hoarding situation and was very fearful of humans. Robert, a retired teacher, had experience with rescue dogs and was patient enough to help Buddy overcome his trauma. It took three months of daily training, positive reinforcement, and lots of love before Buddy began to trust again. Now, Buddy is Robert's constant companion on morning jogs, afternoon hikes, and evening walks around the neighborhood. Robert volunteers at the shelter with Buddy, helping other fearful dogs learn to trust humans again. Their bond is truly inspiring to everyone who meets them.",
+    "image": "dog.png",
+    "location": "Denver, CO"
+  },
+  {
+    "id": 5,
+    "petName": "Whiskers",
+    "petType": "cat",
+    "breed": "Tabby",
+    "adopterName": "Grace and Tom Patterson",
+    "adoptionDate": "2024-05-20",
+    "story": "Whiskers was brought to the shelter as a pregnant stray. After giving birth to healthy kittens (who were all adopted too!), she was ready to find her forever home. Grace and Tom, an elderly couple, were looking for a calm companion after losing their previous cat of 15 years. Whiskers seemed to understand exactly what they needed - she's affectionate but not demanding, playful but not destructive, and has the most soothing purr that helps Tom with his anxiety. The couple says Whiskers has brought new life and laughter back into their home.",
+    "image": "cat.png",
+    "location": "Phoenix, AZ"
+  },
+  {
+    "id": 6,
+    "petName": "Shelley",
+    "petType": "turtle",
+    "breed": "Red-Eared Slider",
+    "adopterName": "Marcus Thompson",
+    "adoptionDate": "2024-08-30",
+    "story": "Shelley was surrendered when her previous owner could no longer care for her properly. At 12 years old, she needed someone who understood turtle care and could provide the specialized habitat she required. Marcus, a marine biology teacher, was thrilled to adopt Shelley for his classroom. She has become an incredible educational ambassador, helping students learn about aquatic ecosystems and reptile care. During school breaks, Shelley comes home with Marcus, where she enjoys swimming in his backyard pond. Students write letters to Shelley, and Marcus says she's made his science lessons come alive.",
+    "image": "turtle.png",
+    "location": "Miami, FL"
+  },
+  {
+    "id": 7,
+    "petName": "Daisy",
+    "petType": "rabbit",
+    "breed": "Mini Rex",
+    "adopterName": "The Kim Family",
+    "adoptionDate": "2024-07-05",
+    "story": "Daisy was part of an unexpected litter and needed a home that could provide proper rabbit care. The Kim family had been researching rabbit ownership for months and were well-prepared for Daisy's arrival. Their 8-year-old daughter, Mia, takes responsibility for Daisy's daily care under parental supervision. Daisy has her own room in the house with plenty of space to hop and play. She's even learned to come when called and performs little tricks for treats. The family says Daisy has taught them all about responsibility and the unique personalities that rabbits can have.",
+    "image": "rabbit.png",
+    "location": "San Diego, CA"
+  },
+  {
+    "id": 8,
+    "petName": "Charlie",
+    "petType": "dog",
+    "breed": "Beagle",
+    "adopterName": "Amanda Foster",
+    "adoptionDate": "2024-09-18",
+    "story": "Charlie was returned to the shelter twice - not because he wasn't a good dog, but because his previous families weren't prepared for a beagle's energy and vocal nature. Amanda, who works from home and has a large fenced yard, was exactly what Charlie needed. She embraces his howling as 'singing' and takes him on long hiking adventures every weekend. Charlie has also become a therapy dog, visiting local hospitals with Amanda. His gentle nature and expressive face bring smiles to patients and staff alike. Amanda says Charlie has added adventure and purpose to her life in ways she never expected.",
+    "image": "dog.png",
+    "location": "Nashville, TN"
+  },
+  {
+    "id": 9,
+    "petName": "Princess",
+    "petType": "cat",
+    "breed": "Persian",
+    "adopterName": "Eleanor Rodriguez",
+    "adoptionDate": "2024-06-28",
+    "story": "Princess came to us when her elderly owner passed away. At 10 years old, she was grieving and needed someone who could provide the quiet, loving environment she was used to. Eleanor, a retired librarian, understood exactly what Princess needed. She maintained Princess's grooming routine, kept her favorite toys, and even played the classical music that Princess loved. Within weeks, Princess was back to her regal self, supervising Eleanor's daily activities from her favorite sunny windowsill. Eleanor says Princess has brought elegance and tranquility to her retirement years.",
+    "image": "cat.png",
+    "location": "Boston, MA"
+  },
+  {
+    "id": 10,
+    "petName": "Speedy",
+    "petType": "turtle",
+    "breed": "Box Turtle",
+    "adopterName": "Dr. Jennifer Walsh",
+    "adoptionDate": "2024-04-15",
+    "story": "Speedy was found injured by the roadside and brought to our wildlife rehabilitation program. After months of recovery, she was deemed non-releasable due to her injuries but could live a happy life in captivity. Dr. Walsh, a veterinarian who specializes in exotic pets, was the perfect match for Speedy's needs. Speedy now lives in a large outdoor enclosure in Dr. Walsh's backyard, complete with hiding spots, a shallow pond, and native plants. She's become an ambassador for turtle conservation, accompanying Dr. Walsh to school presentations about wildlife protection and proper turtle care.",
+    "image": "turtle.png",
+    "location": "Atlanta, GA"
+  }
+]

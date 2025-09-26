@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 import Navbar from './components/Navbar.jsx';
 import FloatingPaws from './components/FloatingPaws.jsx';
@@ -6,6 +6,9 @@ import FloatingPaws from './components/FloatingPaws.jsx';
 const HomePage = ({ user, onLogout, onAnimalClick, onNavigateToGrooming, onNavigateToCheckup }) => {
   const [isLoading, setIsLoading] = useState(true);
   const [imagesLoaded, setImagesLoaded] = useState(0);
+  const [stories, setStories] = useState([]);
+  const [currentStoryIndex, setCurrentStoryIndex] = useState(0);
+  const storiesRef = useRef(null);
   
   const imageSources = ['/dog.png', '/cat.png', '/rabbit.png', '/turtle.png'];
   const totalImages = imageSources.length;
@@ -41,6 +44,29 @@ const HomePage = ({ user, onLogout, onAnimalClick, onNavigateToGrooming, onNavig
         }, 3000);
       });
   }, []);
+
+  // Load stories data
+  useEffect(() => {
+    const loadStories = async () => {
+      try {
+        const response = await fetch('/stories.json');
+        const storiesData = await response.json();
+        setStories(storiesData);
+      } catch (error) {
+        console.error('Error loading stories:', error);
+      }
+    };
+
+    loadStories();
+  }, []);
+
+  // Function to scroll to stories section
+  const scrollToStories = () => {
+    storiesRef.current?.scrollIntoView({
+      behavior: 'smooth',
+      block: 'start'
+    });
+  };
 
   // Loading Animation Component
   const LoadingAnimation = () => (
@@ -171,7 +197,141 @@ const HomePage = ({ user, onLogout, onAnimalClick, onNavigateToGrooming, onNavig
             </div>
           </div>
         </section>
+
+        {/* Success Stories Section */}
+        <section ref={storiesRef} className="stories-section mt-24 mb-16">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+            className="text-center mb-12"
+          >
+            <h2 className="text-4xl lg:text-5xl font-bold mb-6 text-white">
+              Success Stories
+            </h2>
+            <p className="text-lg lg:text-xl text-white/80 max-w-3xl mx-auto">
+              Heartwarming tales of furry friends finding their forever homes
+            </p>
+          </motion.div>
+
+          {stories.length > 0 && (
+            <div className="relative">
+              {/* Story Card */}
+              <motion.div
+                key={currentStoryIndex}
+                initial={{ opacity: 0, x: 100 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: -100 }}
+                transition={{ duration: 0.5 }}
+                className="story-card bg-white/10 backdrop-blur-sm rounded-2xl p-8 border border-white/20 max-w-4xl mx-auto"
+              >
+                <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-center">
+                  {/* Pet Image */}
+                  <div className="lg:col-span-1">
+                    <div className="relative">
+                      <img
+                        src={`/${stories[currentStoryIndex].image}`}
+                        alt={stories[currentStoryIndex].petName}
+                        className="w-full h-64 lg:h-80 object-cover rounded-xl shadow-lg"
+                      />
+                      <div className="absolute top-4 left-4 bg-orange-400 text-black px-3 py-1 rounded-full text-sm font-semibold">
+                        {stories[currentStoryIndex].petType.toUpperCase()}
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Story Content */}
+                  <div className="lg:col-span-2 space-y-6">
+                    <div>
+                      <h3 className="text-3xl font-bold text-white mb-2">
+                        {stories[currentStoryIndex].petName}
+                      </h3>
+                      <div className="flex flex-wrap gap-4 text-white/70 mb-4">
+                        <span className="flex items-center gap-2">
+                          <span>🏠</span>
+                          {stories[currentStoryIndex].adopterName}
+                        </span>
+                        <span className="flex items-center gap-2">
+                          <span>📍</span>
+                          {stories[currentStoryIndex].location}
+                        </span>
+                        <span className="flex items-center gap-2">
+                          <span>📅</span>
+                          {new Date(stories[currentStoryIndex].adoptionDate).toLocaleDateString()}
+                        </span>
+                      </div>
+                      <div className="bg-orange-100 text-orange-800 px-3 py-1 rounded-full text-sm font-medium inline-block mb-4">
+                        {stories[currentStoryIndex].breed}
+                      </div>
+                    </div>
+
+                    <p className="text-white/90 leading-relaxed text-lg">
+                      {stories[currentStoryIndex].story}
+                    </p>
+                  </div>
+                </div>
+              </motion.div>
+
+              {/* Navigation Dots */}
+              <div className="flex justify-center items-center mt-8 space-x-3">
+                {stories.map((_, index) => (
+                  <button
+                    key={index}
+                    onClick={() => setCurrentStoryIndex(index)}
+                    className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                      index === currentStoryIndex
+                        ? 'bg-orange-400 scale-125'
+                        : 'bg-white/30 hover:bg-white/50'
+                    }`}
+                    aria-label={`View story ${index + 1}`}
+                  />
+                ))}
+              </div>
+
+              {/* Navigation Arrows */}
+              <div className="absolute top-1/2 -translate-y-1/2 left-4 right-4 flex justify-between pointer-events-none">
+                <button
+                  onClick={() => setCurrentStoryIndex((prev) => 
+                    prev === 0 ? stories.length - 1 : prev - 1
+                  )}
+                  className="bg-white/20 hover:bg-white/30 text-white p-3 rounded-full backdrop-blur-sm transition-all duration-300 pointer-events-auto"
+                  aria-label="Previous story"
+                >
+                  <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                  </svg>
+                </button>
+                <button
+                  onClick={() => setCurrentStoryIndex((prev) => 
+                    prev === stories.length - 1 ? 0 : prev + 1
+                  )}
+                  className="bg-white/20 hover:bg-white/30 text-white p-3 rounded-full backdrop-blur-sm transition-all duration-300 pointer-events-auto"
+                  aria-label="Next story"
+                >
+                  <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                  </svg>
+                </button>
+              </div>
+            </div>
+          )}
+        </section>
       </main>
+
+      {/* Stories Button - Fixed Bottom Right */}
+      <motion.button
+        onClick={scrollToStories}
+        className="fixed bottom-8 right-8 bg-orange-400 hover:bg-orange-500 text-black px-6 py-3 rounded-full font-semibold text-lg shadow-2xl z-20 flex items-center gap-2 transition-colors duration-300"
+        whileHover={{ scale: 1.05 }}
+        whileTap={{ scale: 0.95 }}
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 1.5, duration: 0.6 }}
+      >
+        <span>📖</span>
+        Stories
+      </motion.button>
     </div>
   );
 };
