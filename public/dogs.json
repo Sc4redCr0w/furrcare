@@ -16,7 +16,7 @@
     "age": 2,
     "location": "California",
     "vaccination": "yes",
-    "image": "/dog.png",
+    "image": "/dog3.png",
     "description": "Intelligent and loyal companion, well-trained and protective."
   },
   {
@@ -26,7 +26,7 @@
     "age": 5,
     "location": "Texas",
     "vaccination": "no",
-    "image": "/dog.png",
+    "image": "/dog4.png",
     "description": "Gentle giant with a calm temperament, loves swimming and fetching."
   },
   {
@@ -36,7 +36,7 @@
     "age": 4,
     "location": "Florida",
     "vaccination": "yes",
-    "image": "/dog.png",
+    "image": "/dog8.png",
     "description": "Sweet and affectionate, enjoys lounging and short walks."
   },
   {
@@ -46,7 +46,7 @@
     "age": 1,
     "location": "New York",
     "vaccination": "yes",
-    "image": "/dog.png",
+    "image": "/dog9.png",
     "description": "Playful puppy with lots of energy, loves exploring and treats."
   },
   {
@@ -56,7 +56,7 @@
     "age": 6,
     "location": "Illinois",
     "vaccination": "no",
-    "image": "/dog.png",
+    "image": "/dog10.png",
     "description": "Strong and confident, needs an experienced owner."
   },
   {
@@ -66,7 +66,7 @@
     "age": 2,
     "location": "California",
     "vaccination": "yes",
-    "image": "/dog.png",
+    "image": "/dog11.png",
     "description": "Smart and hypoallergenic, perfect for families with allergies."
   },
   {
@@ -86,7 +86,7 @@
     "age": 7,
     "location": "Washington",
     "vaccination": "yes",
-    "image": "/dog.png",
+    "image": "/dog3.png",
     "description": "Senior dog with a gentle heart, looking for a quiet home."
   },
   {
@@ -96,7 +96,7 @@
     "age": 3,
     "location": "Texas",
     "vaccination": "no",
-    "image": "/dog.png",
+    "image": "/dog8.png",
     "description": "Protective and intelligent, great for security and companionship."
   },
   {
@@ -106,7 +106,7 @@
     "age": 2,
     "location": "Oregon",
     "vaccination": "yes",
-    "image": "/dog.png",
+    "image": "/dog9.png",
     "description": "Extremely smart and active, needs mental stimulation."
   },
   {
@@ -116,7 +116,7 @@
     "age": 1,
     "location": "Florida",
     "vaccination": "yes",
-    "image": "/dog.png",
+    "image": "/dog10.png",
     "description": "Young and enthusiastic, loves water and outdoor activities."
   }
 ]
