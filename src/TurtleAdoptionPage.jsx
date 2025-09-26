@@ -46,6 +46,9 @@ const TurtleAdoptionPage = ({ onGoHome, onGoBack }) => {
   const handleFilterChange = (key, val) => setFilters(prev => ({ ...prev, [key]: val }));
   const clearFilters = () => setFilters({ breed: '', age: '', location: '', vaccination: '' });
 
+  const handleTurtleClick = (turtle) => setSelectedTurtle(turtle);
+  const closeTurtleDetails = () => setSelectedTurtle(null);
+
   return (
     <div className="min-h-screen w-full bg-black text-white relative overflow-hidden">
       <header className="flex items-center justify-between p-6 border-b border-white/20 relative z-10">
@@ -84,14 +87,14 @@ const TurtleAdoptionPage = ({ onGoHome, onGoBack }) => {
 
           <motion.div initial={{ y: 40, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ delay: 0.4 }} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
             {filteredTurtles.map((pet, index) => (
-              <motion.div key={pet.id} initial={{ scale: 0.9, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} transition={{ delay: 0.1 * index }} className="text-white rounded-2xl p-6 hover:shadow-2xl hover:shadow-white/20 transition-all duration-300 hover:-translate-y-2 cursor-pointer" style={{ backgroundColor: 'rgb(13, 17, 23)' }} onClick={()=>setSelectedTurtle(pet)}>
+              <motion.div key={pet.id} initial={{ scale: 0.9, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} transition={{ delay: 0.1 * index }} className="text-white rounded-2xl p-6 hover:shadow-2xl hover:shadow-white/20 transition-all duration-300 hover:-translate-y-2 cursor-pointer" style={{ backgroundColor: 'rgb(13, 17, 23)' }} onClick={() => handleTurtleClick(pet)}>
                 <div className="w-full h-48 rounded-xl overflow-hidden mb-4"><img src={pet.image} alt={pet.name} className="w-full h-full object-cover"/></div>
                 <h3 className="text-2xl font-bold text-orange-400 mb-2">{pet.name}</h3>
                 <p className="text-sm text-white/80 mb-2">{pet.breed} • {pet.age} yrs • {pet.location}</p>
                 <p className={`text-sm font-medium ${pet.vaccination==='yes'?'text-green-400':'text-red-400'}`}>{pet.vaccination==='yes'?'✓ Vaccinated':'✗ Not Vaccinated'}</p>
                 <button 
                   className="mt-4 w-full bg-orange-400 hover:bg-orange-500 text-black px-4 py-2 rounded-lg font-medium transition-colors duration-300"
-                  onClick={(e) => { e.stopPropagation(); setSelectedTurtle(pet); }}
+                  onClick={(e) => { e.stopPropagation(); handleTurtleClick(pet); }}
                 >
                   View Details 👁️
                 </button>
@@ -112,7 +115,7 @@ const TurtleAdoptionPage = ({ onGoHome, onGoBack }) => {
         {selectedTurtle && (
           <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="fixed inset-0 bg-black/80 backdrop-blur-sm flex items-center justify-center p-4 z-50">
             <motion.div initial={{ scale: 0.8, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} exit={{ scale: 0.8, opacity: 0 }} className="bg-gray-900 rounded-2xl p-8 max-w-2xl w-full max-h-[90vh] overflow-y-auto">
-              <div className="flex justify-end mb-4"><button onClick={()=>setSelectedTurtle(null)} className="text-white/70 hover:text-white text-2xl w-8 h-8 flex items-center justify-center rounded-full hover:bg-white/10 transition-colors duration-300">×</button></div>
+              <div className="flex justify-end mb-4"><button onClick={closeTurtleDetails} className="text-white/70 hover:text-white text-2xl w-8 h-8 flex items-center justify-center rounded-full hover:bg-white/10 transition-colors duration-300">×</button></div>
               <div className="flex flex-col lg:flex-row gap-8">
                 <div className="lg:w-1/2"><div className="w-full h-80 rounded-xl overflow-hidden mb-4"><img src={selectedTurtle.image} alt={selectedTurtle.name} className="w-full h-full object-cover"/></div></div>
                 <div className="lg:w-1/2 space-y-6">
@@ -122,7 +125,7 @@ const TurtleAdoptionPage = ({ onGoHome, onGoBack }) => {
                   <p className="text-gray-300">{selectedTurtle.description}</p>
                   <div className="space-y-3">
                     <button className="w-full bg-orange-400 hover:bg-orange-500 text-black px-6 py-3 rounded-lg font-bold">Adopt {selectedTurtle.name} 🏠</button>
-                    <button onClick={()=>setSelectedTurtle(null)} className="w-full bg-white/10 hover:bg-white/20 text-white px-6 py-3 rounded-lg font-medium">Close</button>
+                    <button onClick={closeTurtleDetails} className="w-full bg-white/10 hover:bg-white/20 text-white px-6 py-3 rounded-lg font-medium">Close</button>
                   </div>
                 </div>
               </div>

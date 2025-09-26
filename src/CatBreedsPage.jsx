@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { motion } from 'framer-motion';
 
 const CatBreedsPage = ({ onGoHome, onAdoptNow }) => {
@@ -23,6 +23,26 @@ const CatBreedsPage = ({ onGoHome, onAdoptNow }) => {
     },
   ];
 
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const listRef = useRef(null);
+  const itemRefs = useRef([]);
+
+  // Smoothly keep the active card centered in view when highlight changes
+  useEffect(() => {
+    const el = itemRefs.current[currentIndex];
+    if (el && listRef.current) {
+      el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+  }, [currentIndex]);
+
+  const handlePrev = () => {
+    setCurrentIndex((prev) => (prev === 0 ? catBreeds.length - 1 : prev - 1));
+  };
+
+  const handleNext = () => {
+    setCurrentIndex((prev) => (prev === catBreeds.length - 1 ? 0 : prev + 1));
+  };
+
   return (
     <div className="min-h-screen w-full bg-black text-white relative overflow-hidden">
       {/* Background Pattern */}
@@ -36,24 +56,24 @@ const CatBreedsPage = ({ onGoHome, onAdoptNow }) => {
       </div>
 
       {/* Header */}
-      <header className="flex items-center justify-between p-6 border-b border-white/20">
+      <header className="flex items-center justify-between p-6 border-b border-white/20 relative z-10">
         <div className="flex items-center gap-3">
           <div className="text-2xl text-orange-400">🐾</div>
           <span className="text-2xl font-bold">FURCARE</span>
         </div>
-        
-        <button 
+
+        <button
           onClick={onGoHome}
           className="text-white hover:text-orange-400 transition-colors duration-300 underline"
         >
           Go Back To Home Page
         </button>
-        
+
         <div className="flex items-center gap-4">
           <div className="relative">
-            <input 
-              type="text" 
-              placeholder="Search..." 
+            <input
+              type="text"
+              placeholder="Search..."
               className="bg-white/10 border border-white/30 rounded-full px-4 py-2 text-white placeholder-white/70 w-64"
             />
             <div className="absolute right-3 top-1/2 transform -translate-y-1/2 text-white/70">
@@ -64,7 +84,7 @@ const CatBreedsPage = ({ onGoHome, onAdoptNow }) => {
       </header>
 
       {/* Main Content */}
-      <div className="flex items-center justify-center min-h-[calc(100vh-100px)] px-8">
+      <div className="flex items-center justify-center min-h-[calc(100vh-100px)] px-8 relative z-10">
         <div className="max-w-7xl w-full">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             
@@ -74,7 +94,6 @@ const CatBreedsPage = ({ onGoHome, onAdoptNow }) => {
               animate={{ x: 0, opacity: 1 }}
               transition={{ duration: 0.8 }}
               className="space-y-8"
-              style={{ pointerEvents: 'auto' }}
             >
               <div className="space-y-4">
                 <div className="text-orange-400 text-6xl">»»»»</div>
@@ -84,21 +103,20 @@ const CatBreedsPage = ({ onGoHome, onAdoptNow }) => {
                   ))}
                 </div>
               </div>
-              
+
               <div className="space-y-6">
                 <h1 className="text-6xl lg:text-7xl font-bold leading-tight">
                   <div className="text-white">EXPLORE</div>
                   <div className="text-orange-400">CAT BREEDS</div>
                 </h1>
-                
+
                 <p className="text-white/80 text-lg leading-relaxed max-w-md">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
                 </p>
-                
+
                 <button 
                   onClick={onAdoptNow}
                   className="bg-orange-400 hover:bg-orange-500 text-black px-8 py-3 rounded-full font-bold transition-colors duration-300 flex items-center gap-2"
-                  style={{ pointerEvents: 'auto', position: 'relative', zIndex: 10 }}
                 >
                   ADOPT NOW
                   <span className="text-xl">▶</span>
@@ -114,62 +132,84 @@ const CatBreedsPage = ({ onGoHome, onAdoptNow }) => {
               <div className="text-orange-400 text-6xl">»»»»</div>
             </motion.div>
 
-            {/* Right Side - Cat Breed Cards */}
+            {/* Right Side - Vertical Breed List with Highlight and Scroll Effects */}
             <motion.div 
               initial={{ x: 100, opacity: 0 }}
               animate={{ x: 0, opacity: 1 }}
               transition={{ duration: 0.8, delay: 0.2 }}
               className="relative"
             >
-              <div className="space-y-6">
-                {catBreeds.map((breed, index) => (
-                  <motion.div
-                    key={breed.id}
-                    initial={{ x: 50, opacity: 0 }}
-                    animate={{ x: 0, opacity: 1 }}
-                    transition={{ delay: 0.3 + index * 0.1 }}
-                    className="text-white rounded-2xl p-6 hover:shadow-2xl hover:shadow-white/20 transition-all duration-300 hover:-translate-y-1"
-                    style={{ 
-                      backgroundColor: 'rgb(13, 17, 23)',
-                      marginLeft: index % 2 === 1 ? '2rem' : '0',
-                      zIndex: catBreeds.length - index 
-                    }}
-                  >
-                    <div className="flex items-center gap-6">
-                      <div className="w-24 h-24 rounded-xl overflow-hidden flex-shrink-0">
-                        <img 
-                          src={breed.image} 
-                          alt={breed.name}
-                          className="w-full h-full object-cover"
-                        />
-                      </div>
-                      
-                      <div className="flex-1">
-                        <h3 className="text-2xl font-bold mb-2">{breed.name}</h3>
-                        <p className="text-gray-300 text-sm leading-relaxed mb-4">
-                          {breed.description}
-                        </p>
+              {/* top/bottom fade gradients to hint scroll */}
+              <div className="pointer-events-none absolute inset-x-0 top-0 h-8 bg-gradient-to-b from-black to-transparent z-10" />
+              <div className="pointer-events-none absolute inset-x-0 bottom-0 h-8 bg-gradient-to-t from-black to-transparent z-10" />
+
+              <div ref={listRef} className="max-h-[60vh] overflow-y-auto overflow-x-visible no-scrollbar px-3 py-2 space-y-4 snap-y snap-mandatory">
+                {catBreeds.map((cat, i) => {
+                  const active = i === currentIndex;
+                  return (
+                    <motion.div
+                      key={cat.id}
+                      initial={{ opacity: 0, y: 10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.3, delay: i * 0.05 }}
+                      ref={(el) => (itemRefs.current[i] = el)}
+                      onClick={() => setCurrentIndex(i)}
+                      className={`relative mx-2 text-white rounded-2xl p-6 shadow-lg bg-[#0d1117] transition-all duration-300 cursor-pointer snap-center ${
+                        active
+              ? 'z-20 ring-2 ring-orange-400 ring-offset-2 ring-offset-black opacity-100 scale-105 drop-shadow-[0_0_16px_rgba(255,255,255,0.35)]'
+                          : ''
+                      }`}
+                    >
+                      <div className="flex items-center gap-6">
+                        <div className="w-24 h-24 rounded-xl overflow-hidden flex-shrink-0">
+                          <img 
+                            src={cat.image} 
+                            alt={cat.name}
+                            className="w-full h-full object-cover"
+                          />
+                        </div>
                         
-                        <button className="bg-orange-400 hover:bg-orange-500 text-black px-6 py-2 rounded-full text-sm font-medium transition-colors duration-300 flex items-center gap-2">
-                          Read More
-                          <span className="text-lg">▶</span>
-                        </button>
+                        <div className="flex-1">
+                          <h3 className="text-2xl font-bold mb-2">{cat.name}</h3>
+                          <p className="text-gray-300 text-sm leading-relaxed mb-4">
+                            {cat.description}
+                          </p>
+                          {active && (
+                            <button className="bg-orange-400 hover:bg-orange-500 text-black px-6 py-2 rounded-full text-sm font-medium transition-colors duration-300 flex items-center gap-2">
+                              Read More
+                              <span className="text-lg">▶</span>
+                            </button>
+                          )}
+                        </div>
                       </div>
-                    </div>
-                  </motion.div>
-                ))}
+                    </motion.div>
+                  );
+                })}
               </div>
-              
-              {/* Navigation arrows */}
-              <div className="absolute -left-8 top-1/2 transform -translate-y-1/2">
-                <button className="w-12 h-12 bg-orange-400 hover:bg-orange-500 rounded-full flex items-center justify-center text-black font-bold text-xl transition-colors duration-300">
-                  ‹
+
+              {/* Navigation arrows (top and bottom) to change highlight */}
+              <div className="absolute left-1/2 -translate-x-1/2 -top-8 z-20">
+                <button 
+                  onClick={handlePrev}
+                  aria-label="Previous"
+                  className="w-10 h-10 bg-orange-400 hover:bg-orange-500 rounded-full flex items-center justify-center transition-colors duration-300 shadow-md"
+                >
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="black" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                    <path d="M12 5v14" />
+                    <path d="M6 11l6-6 6 6" />
+                  </svg>
                 </button>
               </div>
-              
-              <div className="absolute -right-8 top-1/2 transform -translate-y-1/2">
-                <button className="w-12 h-12 bg-orange-400 hover:bg-orange-500 rounded-full flex items-center justify-center text-black font-bold text-xl transition-colors duration-300">
-                  ›
+              <div className="absolute left-1/2 -translate-x-1/2 -bottom-8 z-20">
+                <button 
+                  onClick={handleNext}
+                  aria-label="Next"
+                  className="w-10 h-10 bg-orange-400 hover:bg-orange-500 rounded-full flex items-center justify-center transition-colors duration-300 shadow-md"
+                >
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="black" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                    <path d="M12 19V5" />
+                    <path d="M6 13l6 6 6-6" />
+                  </svg>
                 </button>
               </div>
             </motion.div>
