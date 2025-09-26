@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import Login from "./Login.jsx";
 import HomePage from "./HomePage.jsx";
+import GroomingPage from "./GroomingPage.jsx";
+import CheckupPage from "./CheckupPage.jsx";
 import DogBreedsPage from "./DogBreedsPage.jsx";
 import CatBreedsPage from "./CatBreedsPage.jsx";
 import RabbitBreedsPage from "./RabbitBreedsPage.jsx";
@@ -55,6 +57,18 @@ function App() {
     }
 
     switch (currentPage) {
+      case 'grooming':
+        return <GroomingPage 
+          onGoHome={handleGoHome} 
+          user={currentUser}
+          onLogout={handleLogout}
+        />;
+      case 'checkup':
+        return <CheckupPage 
+          onGoHome={handleGoHome} 
+          user={currentUser}
+          onLogout={handleLogout}
+        />;
       case 'dog':
         return <DogBreedsPage 
           onGoHome={handleGoHome} 
@@ -81,7 +95,9 @@ function App() {
         return <HomePage 
           user={currentUser} 
           onLogout={handleLogout} 
-          onAnimalClick={handleAnimalClick} 
+          onAnimalClick={handleAnimalClick}
+          onNavigateToGrooming={() => handlePageChange('grooming')}
+          onNavigateToCheckup={() => handlePageChange('checkup')}
           onNavigateToDogs={() => handlePageChange('dog')} 
           onNavigateToCats={() => handlePageChange('cat')} 
           onNavigateToRabbits={() => handlePageChange('rabbit')} 

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 
-const HomePage = ({ user, onLogout, onAnimalClick }) => {
+const HomePage = ({ user, onLogout, onAnimalClick, onNavigateToGrooming, onNavigateToCheckup }) => {
   const [isLoading, setIsLoading] = useState(true);
   const [imagesLoaded, setImagesLoaded] = useState(0);
   
@@ -90,8 +90,18 @@ const HomePage = ({ user, onLogout, onAnimalClick }) => {
             <span className="brand-name text-2xl font-bold text-white">FURCARE</span>
           </div>
           <nav className="nav-menu flex gap-8 items-center">
-            <a href="#checkups" className="nav-item text-white hover:text-orange-400 transition-colors duration-300 text-sm font-medium">CHECKUPS</a>
-            <a href="#grooming" className="nav-item text-white hover:text-orange-400 transition-colors duration-300 text-sm font-medium">GROOMING</a>
+            <button 
+              onClick={onNavigateToCheckup}
+              className="nav-item text-white hover:text-orange-400 transition-colors duration-300 text-sm font-medium bg-transparent border-none cursor-pointer"
+            >
+              CHECKUPS
+            </button>
+            <button 
+              onClick={onNavigateToGrooming}
+              className="nav-item text-white hover:text-orange-400 transition-colors duration-300 text-sm font-medium bg-transparent border-none cursor-pointer"
+            >
+              GROOMING
+            </button>
             <a href="#training" className="nav-item text-white hover:text-orange-400 transition-colors duration-300 text-sm font-medium">TRAINING</a>
             <a href="#store" className="nav-item text-white hover:text-orange-400 transition-colors duration-300 text-sm font-medium">STORE</a>
             <a href="#account" className="nav-item text-white hover:text-orange-400 transition-colors duration-300 text-sm font-medium">YOUR ACCOUNT</a>
