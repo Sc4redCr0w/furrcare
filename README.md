@@ -56,8 +56,8 @@ src/
 ├── CheckupPage.jsx      # Veterinary services
 ├── GroomingPage.jsx     # Pet grooming services
 ├── HomePage.jsx         # Main landing page
-├── Login.jsx           # User authentication
-└── Leaderboard.jsx     # Gamification features
+└── Login.jsx           # User authentication
+
 ```
 
 ## 🚀 Getting Started
@@ -121,8 +121,10 @@ This project is part of a portfolio demonstration. Please contact the repository
 
 ## 👨‍💻 Developer
 
-Created by **Sc4redCr0w** - A passionate developer focused on creating meaningful applications that connect people with their perfect pet companions.
+Created by **Sc4redCr0w** and **ARCHITVARMA15** - A passionate developer focused on creating meaningful applications that connect people with their perfect pet companions.
 
 ---
 
 *"Paws, Claws, and Endless Love" - FurrCare connects hearts with paws* 🐾❤️
+
+
