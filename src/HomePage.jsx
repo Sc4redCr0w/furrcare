@@ -1,6 +1,85 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import { motion } from 'framer-motion';
 
 const HomePage = ({ user, onLogout, onAnimalClick }) => {
+  const [isLoading, setIsLoading] = useState(true);
+  const [imagesLoaded, setImagesLoaded] = useState(0);
+  
+  const imageSources = ['/dog.png', '/cat.png', '/rabbit.png', '/turtle.png'];
+  const totalImages = imageSources.length;
+
+  useEffect(() => {
+    let loadedCount = 0;
+    
+    const imagePromises = imageSources.map((src) => {
+      return new Promise((resolve, reject) => {
+        const img = new Image();
+        img.onload = () => {
+          loadedCount++;
+          setImagesLoaded(loadedCount);
+          resolve();
+        };
+        img.onerror = reject;
+        img.src = src;
+      });
+    });
+
+    Promise.all(imagePromises)
+      .then(() => {
+        // Add a small delay to show the loading animation
+        setTimeout(() => {
+          setIsLoading(false);
+        }, 500);
+      })
+      .catch((error) => {
+        console.error('Error loading images:', error);
+        // Even if images fail to load, hide loading after timeout
+        setTimeout(() => {
+          setIsLoading(false);
+        }, 3000);
+      });
+  }, []);
+
+  // Loading Animation Component
+  const LoadingAnimation = () => (
+    <div className="fixed inset-0 bg-black flex flex-col items-center justify-center z-50">
+      <div className="flex items-center space-x-4 mb-8">
+        {[...Array(5)].map((_, index) => (
+          <motion.div
+            key={index}
+            className="text-6xl text-orange-400"
+            animate={{
+              scale: [1, 1.3, 1],
+              rotate: [0, 15, -15, 0],
+              y: [0, -10, 0],
+            }}
+            transition={{
+              duration: 1,
+              repeat: Infinity,
+              delay: index * 0.2,
+              ease: "easeInOut"
+            }}
+          >
+            🐾
+          </motion.div>
+        ))}
+      </div>
+      <motion.div
+        className="text-white text-xl font-medium mb-4"
+        animate={{ opacity: [0.5, 1, 0.5] }}
+        transition={{ duration: 1.5, repeat: Infinity }}
+      >
+        Loading FURCARE...
+      </motion.div>
+      <div className="text-orange-400 text-sm">
+        {imagesLoaded}/{totalImages} images loaded
+      </div>
+    </div>
+  );
+
+  if (isLoading) {
+    return <LoadingAnimation />;
+  }
   return (
     <div className="home-page bg-black text-white min-h-screen">
       {/* Navigation Header */}

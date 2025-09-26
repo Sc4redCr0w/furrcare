@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import Dropdown from './components/Dropdown.jsx';
 
 const TurtleAdoptionPage = ({ onGoHome, onGoBack }) => {
+  const [isLoading, setIsLoading] = useState(true);
   const [turtles, setTurtles] = useState([]);
   const [filteredTurtles, setFilteredTurtles] = useState([]);
   const [selectedTurtle, setSelectedTurtle] = useState(null);
@@ -16,7 +17,32 @@ const TurtleAdoptionPage = ({ onGoHome, onGoBack }) => {
         const data = await res.json();
         setTurtles(data);
         setFilteredTurtles(data);
-      } catch (e) { console.error('Error fetching turtles data:', e); }
+        
+        // Preload all turtle images
+        const imagePromises = data.map((turtle) => {
+          return new Promise((resolve, reject) => {
+            const img = new Image();
+            img.onload = resolve;
+            img.onerror = resolve; // Continue even if image fails
+            img.src = turtle.image;
+          });
+        });
+
+        // Wait for all images to load
+        await Promise.all(imagePromises);
+        
+        // Add a small delay to show the loading animation
+        setTimeout(() => {
+          setIsLoading(false);
+        }, 500);
+        
+      } catch (e) { 
+        console.error('Error fetching turtles data:', e);
+        // Hide loading even on error
+        setTimeout(() => {
+          setIsLoading(false);
+        }, 1000);
+      }
     };
     fetchTurtles();
   }, []);
@@ -48,6 +74,44 @@ const TurtleAdoptionPage = ({ onGoHome, onGoBack }) => {
 
   const handleTurtleClick = (turtle) => setSelectedTurtle(turtle);
   const closeTurtleDetails = () => setSelectedTurtle(null);
+
+  // Loading Animation Component
+  const LoadingAnimation = () => (
+    <div className="fixed inset-0 bg-black flex flex-col items-center justify-center z-50">
+      <div className="flex items-center space-x-4 mb-8">
+        {[...Array(5)].map((_, index) => (
+          <motion.div
+            key={index}
+            className="text-6xl text-orange-400"
+            animate={{
+              scale: [1, 1.3, 1],
+              rotate: [0, 15, -15, 0],
+              y: [0, -10, 0],
+            }}
+            transition={{
+              duration: 1,
+              repeat: Infinity,
+              delay: index * 0.2,
+              ease: "easeInOut"
+            }}
+          >
+            🐾
+          </motion.div>
+        ))}
+      </div>
+      <motion.div
+        className="text-white text-xl font-medium"
+        animate={{ opacity: [0.5, 1, 0.5] }}
+        transition={{ duration: 1.5, repeat: Infinity }}
+      >
+        Loading Turtles for Adoption...
+      </motion.div>
+    </div>
+  );
+
+  if (isLoading) {
+    return <LoadingAnimation />;
+  }
 
   return (
     <div className="min-h-screen w-full bg-black text-white relative overflow-hidden">
