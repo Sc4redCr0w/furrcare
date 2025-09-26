@@ -147,7 +147,7 @@ const HomePage = ({ user, onLogout, onAnimalClick, onNavigateToGrooming, onNavig
         {/* Pet Gallery */}
         <section className="pet-gallery grid grid-cols-1 md:grid-cols-4 gap-8 p-4">
           <div 
-            className="pet-card rounded-3xl hover:transform hover:-translate-y-2 transition-transform duration-300 relative group cursor-pointer"
+            className="pet-card rounded-3xl hover:transform hover:-translate-y-2 transition-transform duration-300 relative group cursor-pointer border-2 border-white/20"
             onClick={() => onAnimalClick('dog')}
           >
             <img 
@@ -160,7 +160,7 @@ const HomePage = ({ user, onLogout, onAnimalClick, onNavigateToGrooming, onNavig
             </div>
           </div>
           <div 
-            className="pet-card rounded-3xl hover:transform hover:-translate-y-2 transition-transform duration-300 relative group cursor-pointer"
+            className="pet-card rounded-3xl hover:transform hover:-translate-y-2 transition-transform duration-300 relative group cursor-pointer border-2 border-white/20"
             onClick={() => onAnimalClick('cat')}
           >
             <img 
@@ -173,7 +173,7 @@ const HomePage = ({ user, onLogout, onAnimalClick, onNavigateToGrooming, onNavig
             </div>
           </div>
           <div 
-            className="pet-card rounded-3xl hover:transform hover:-translate-y-2 transition-transform duration-300 relative group cursor-pointer"
+            className="pet-card rounded-3xl hover:transform hover:-translate-y-2 transition-transform duration-300 relative group cursor-pointer border-2 border-white/20"
             onClick={() => onAnimalClick('rabbit')}
           >
             <img 
@@ -186,7 +186,7 @@ const HomePage = ({ user, onLogout, onAnimalClick, onNavigateToGrooming, onNavig
             </div>
           </div>
           <div 
-            className="pet-card rounded-3xl hover:transform hover:-translate-y-2 transition-transform duration-300 relative group cursor-pointer"
+            className="pet-card rounded-3xl hover:transform hover:-translate-y-2 transition-transform duration-300 relative group cursor-pointer border-2 border-white/20"
             onClick={() => onAnimalClick('turtle')}
           >
             <img 
@@ -265,7 +265,7 @@ const HomePage = ({ user, onLogout, onAnimalClick, onNavigateToGrooming, onNavig
                     animate={{ opacity: 1, x: 0 }}
                     exit={{ opacity: 0, x: -100 }}
                     transition={{ duration: 0.5 }}
-                    className="story-card bg-white/10 backdrop-blur-sm rounded-2xl p-8 border border-white/20 max-w-4xl mx-auto"
+                    className="story-card bg-white/10 backdrop-blur-sm rounded-3xl p-8 border border-white/20 max-w-4xl mx-auto"
                   >
                     <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-center">
                       {/* Pet Image */}

@@ -42,10 +42,13 @@ const Login = ({ onLogin }) => {
       <FloatingPaws />
 
       {/* Navbar */}
-      <div className="absolute top-0 left-0 w-full flex items-center justify-between p-4 border-b border-gray-600">
-        <div className="flex items-center space-x-2">
-          <span className="text-xl">🐾</span>
-          <h1 className="font-bold tracking-wider">FURCARE</h1>
+      <div className="absolute top-0 left-0 w-full border-b border-gray-600">
+        <div className="max-w-6xl mx-auto flex justify-between items-center py-6 px-8">
+          <div className="logo flex items-center gap-3">
+            <div className="paw-icon text-2xl text-orange-400">🐾</div>
+            <span className="brand-name text-2xl font-bold text-white">FURCARE</span>
+          </div>
+          <div className="nav-spacer"></div>
         </div>
       </div>
 
@@ -72,10 +75,11 @@ const Login = ({ onLogin }) => {
           transition={{ delay: 0.5, duration: 0.8 }}
           className="md:w-1/2 flex flex-col items-center"
         >
-          <h2 className="text-3xl font-bold mb-2">LOGIN</h2>
-          <p className="text-gray-300 mb-6">Sign in to continue</p>
+          <div className="p-10 border-2 border-white/20 rounded-3xl bg-white/5 backdrop-blur-sm w-full max-w-md">
+            <h2 className="text-3xl font-bold mb-2 text-center">LOGIN</h2>
+            <p className="text-gray-300 mb-6 text-center">Sign in to continue</p>
 
-          <form className="w-full max-w-sm space-y-4" onSubmit={handleSubmit}>
+            <form className="w-full space-y-4" onSubmit={handleSubmit}>
             {error && (
               <div className="text-red-400 text-sm text-center mb-4">
                 {error}
@@ -116,13 +120,14 @@ const Login = ({ onLogin }) => {
             >
               LOGIN
             </motion.button>
-          </form>
+            </form>
 
-          {/* Demo credentials hint */}
-          <div className="mt-6 text-xs text-gray-400 text-center">
-            <p>Demo credentials:</p>
-            <p>Email: admin@furcare.com | Password: admin123</p>
-            <p>Email: user@example.com | Password: user123</p>
+            {/* Demo credentials hint */}
+            <div className="mt-6 text-xs text-gray-400 text-center">
+              <p>Demo credentials:</p>
+              <p>Email: admin@furcare.com | Password: admin123</p>
+              <p>Email: user@example.com | Password: user123</p>
+            </div>
           </div>
         </motion.div>
       </div>

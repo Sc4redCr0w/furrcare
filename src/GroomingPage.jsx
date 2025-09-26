@@ -65,16 +65,6 @@ const GroomingPage = ({ onGoHome, user, onLogout, onNavigateToCheckup, onNavigat
       />
 
       <main className="max-w-7xl mx-auto px-4 py-8">
-        {/* Top Bar */}
-        <div className="flex justify-between items-center mb-8">
-          <button className="bg-orange-500 text-white px-6 py-2 rounded-full font-semibold text-sm">
-            GROOMING
-          </button>
-          <button className="bg-orange-500 hover:bg-orange-600 text-white px-6 py-2 rounded-full font-semibold text-sm transition-colors">
-            BOOK YOUR SERVICES
-          </button>
-        </div>
-
         {/* Hero Section */}
         <div className="relative mb-12">
           <div className="bg-[#1a1a1a] rounded-3xl overflow-hidden relative flex items-center justify-between p-8 lg:p-12 min-h-[350px]">
@@ -86,14 +76,14 @@ const GroomingPage = ({ onGoHome, user, onLogout, onNavigateToCheckup, onNavigat
                 transition={{ duration: 0.6 }}
                 className="text-4xl lg:text-6xl font-bold text-white mb-6"
               >
-                Grooming Services for Pets
+                <span className="text-orange-400">Grooming</span> Services for Pets
               </motion.h1>
               <p className="text-lg text-gray-400 max-w-md">
                 Keep your furry friends clean, healthy, and happy with our professional grooming care.
               </p>
             </div>
             <div className="flex-1 relative">
-              <div className="bg-black rounded-2xl p-6 text-center shadow-lg">
+              <div className="bg-black rounded-3xl p-6 text-center shadow-lg">
                 <h3 className="text-2xl font-bold text-white mb-2">
                   {slides[currentSlide].title}
                 </h3>
@@ -124,7 +114,7 @@ const GroomingPage = ({ onGoHome, user, onLogout, onNavigateToCheckup, onNavigat
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: index * 0.1 }}
-              className="bg-[#1a1a1a] rounded-2xl p-6 hover:scale-105 transition-transform cursor-pointer"
+              className="bg-[#1a1a1a] rounded-3xl p-6 hover:scale-105 transition-transform cursor-pointer"
             >
               <div className="text-4xl mb-4">{service.icon}</div>
               <h3 className="text-lg font-bold mb-2">{service.title}</h3>

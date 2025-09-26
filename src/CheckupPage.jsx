@@ -410,23 +410,13 @@ const CheckupPage = ({ user, onLogout, onGoHome, onNavigateToCheckup, onNavigate
           <input
             type="text"
             placeholder="Search Nearby Doctors..."
-            className="w-full bg-gray-800 border border-gray-600 rounded-full px-6 py-4 text-white placeholder-gray-400 focus:outline-none focus:border-orange-400 focus:ring-2 focus:ring-orange-400/50 pl-12"
+            className="w-full bg-[#1a1a1a] border border-gray-600 rounded-full px-6 py-4 text-white placeholder-gray-400 focus:outline-none focus:border-orange-400 focus:ring-2 focus:ring-orange-400/50 pl-12"
           />
           <div className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400">
             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
             </svg>
           </div>
-          <button className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-white text-black px-6 py-2 rounded-full hover:bg-gray-200 transition-colors duration-300">
-            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M3 3h2l.4 2M7 13h10l4-8H5.4m0 0L7 13m0 0l-1.1 5M6 18a2 2 0 100 4 2 2 0 000-4zm10 0a2 2 0 100 4 2 2 0 000-4z"
-              />
-            </svg>
-          </button>
         </div>
       </div>
 
@@ -435,7 +425,7 @@ const CheckupPage = ({ user, onLogout, onGoHome, onNavigateToCheckup, onNavigate
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
           {/* Left Side - Hero Section */}
           <div className="hero-section">
-            <div className="hero-content bg-gray-900 rounded-3xl p-8 relative overflow-hidden">
+            <div className="hero-content bg-[#1a1a1a] rounded-3xl p-8 relative overflow-hidden">
               <div className="relative z-10">
                 <h1 className="text-4xl lg:text-5xl font-bold mb-6 leading-tight">
                   Pet Health <br />
@@ -467,7 +457,7 @@ const CheckupPage = ({ user, onLogout, onGoHome, onNavigateToCheckup, onNavigate
               {services.map((service) => (
                 <div
                   key={service.id}
-                  className="service-card bg-gray-900 rounded-2xl p-6 hover:bg-gray-800 transition-all duration-300 cursor-pointer transform hover:scale-105 hover:shadow-2xl border border-gray-700 hover:border-orange-400"
+                  className="service-card bg-[#1a1a1a] rounded-3xl p-6 hover:bg-black transition-all duration-300 cursor-pointer transform hover:scale-105 hover:shadow-2xl border border-gray-700 hover:border-orange-400"
                   onClick={() => setSelectedService(service.id)}
                 >
                   <div className="flex items-center gap-4">
@@ -491,16 +481,11 @@ const CheckupPage = ({ user, onLogout, onGoHome, onNavigateToCheckup, onNavigate
               ))}
             </div>
 
-            {/* Additional Services */}
-            <div className="mt-8 text-center">
-              <p className="text-gray-400 mb-4">Need something else?</p>
-              <button className="text-orange-400 hover:text-orange-300 font-medium transition-colors duration-300">View All Services →</button>
-            </div>
           </div>
         </div>
 
         {/* Bottom Section - Emergency Contact */}
-        <div className="emergency-section mt-16 bg-red-900/20 border border-red-500/30 rounded-2xl p-8 relative z-20">
+        <div className="emergency-section mt-8 bg-red-900/20 border border-red-500/30 rounded-3xl p-8 relative z-20">
           <div className="flex flex-col md:flex-row justify-center items-center gap-6 text-center">
             <div>
               <h2 className="text-2xl font-bold text-red-400 mb-4">Emergency Services</h2>
@@ -532,6 +517,12 @@ const CheckupPage = ({ user, onLogout, onGoHome, onNavigateToCheckup, onNavigate
               </a>
             </div>
           </div>
+        </div>
+
+        {/* Additional Services - Moved to Bottom */}
+        <div className="mt-2 text-center">
+          <p className="text-gray-400 mb-4">Need something else?</p>
+          <button className="text-orange-400 hover:text-orange-300 font-medium transition-colors duration-300">View All Services →</button>
         </div>
       </main>
     </div>
