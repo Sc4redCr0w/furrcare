@@ -1,0 +1,10 @@
+[
+  {"id":1,"name":"Shelly","breed":"Red-eared slider","age":3,"location":"Mumbai, Maharashtra","vaccination":"yes","image":"/turtle.png","description":"Active swimmer, enjoys basking under warm light."},
+  {"id":2,"name":"Pebble","breed":"Painted turtle","age":5,"location":"Bengaluru, Karnataka","vaccination":"no","image":"/turtle.png","description":"Calm temperament, requires aquatic habitat care."},
+  {"id":3,"name":"Boxy","breed":"Box turtle","age":7,"location":"Jaipur, Rajasthan","vaccination":"yes","image":"/turtle.png","description":"Terrestrial turtle, enjoys a varied diet and space."},
+  {"id":4,"name":"Tango","breed":"Snapping turtle","age":4,"location":"Kolkata, West Bengal","vaccination":"no","image":"/turtle.png","description":"Strong jaw, needs large water body, cautious around humans."},
+  {"id":5,"name":"Nemo","breed":"Softshell turtle","age":2,"location":"Chennai, Tamil Nadu","vaccination":"yes","image":"/turtle.png","description":"Soft shell, prefers sandy riverbeds, very agile swimmer."},
+  {"id":6,"name":"Spike","breed":"Map turtle","age":6,"location":"Pune, Maharashtra","vaccination":"yes","image":"/turtle.png","description":"Patterned shell, enjoys basking and exploring surroundings."},
+  {"id":7,"name":"Shelldon","breed":"Musk turtle","age":1,"location":"Hyderabad, Telangana","vaccination":"no","image":"/turtle.png","description":"Small, shy, secretes musky scent when threatened."},
+  {"id":8,"name":"Turbo","breed":"Red-footed tortoise","age":8,"location":"Ahmedabad, Gujarat","vaccination":"yes","image":"/turtle.png","description":"Terrestrial, loves fruits and leafy veggies, slow but curious."}
+]

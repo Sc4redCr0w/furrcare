@@ -6,6 +6,9 @@ import CatBreedsPage from "./CatBreedsPage.jsx";
 import RabbitBreedsPage from "./RabbitBreedsPage.jsx";
 import TurtleBreedsPage from "./TurtleBreedsPage.jsx";
 import DogAdoptionPage from "./DogAdoptionPage.jsx";
+import CatAdoptionPage from "./CatAdoptionPage.jsx";
+import RabbitAdoptionPage from "./RabbitAdoptionPage.jsx";
+import TurtleAdoptionPage from "./TurtleAdoptionPage.jsx";
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -58,16 +61,22 @@ function App() {
           onAdoptNow={() => handlePageChange('dog-adoption')}
         />;
       case 'cat':
-        return <CatBreedsPage onGoHome={handleGoHome} />;
+        return <CatBreedsPage onGoHome={handleGoHome} onAdoptNow={() => handlePageChange('cat-adoption')} />;
       case 'rabbit':
-        return <RabbitBreedsPage onGoHome={handleGoHome} />;
+        return <RabbitBreedsPage onGoHome={handleGoHome} onAdoptNow={() => handlePageChange('rabbit-adoption')} />;
       case 'turtle':
-        return <TurtleBreedsPage onGoHome={handleGoHome} />;
+        return <TurtleBreedsPage onGoHome={handleGoHome} onAdoptNow={() => handlePageChange('turtle-adoption')} />;
       case 'dog-adoption':
         return <DogAdoptionPage 
           onGoHome={handleGoHome} 
           onGoBack={() => handlePageChange('dog')}
         />;
+      case 'cat-adoption':
+        return <CatAdoptionPage onGoHome={handleGoHome} onGoBack={() => handlePageChange('cat')} />;
+      case 'rabbit-adoption':
+        return <RabbitAdoptionPage onGoHome={handleGoHome} onGoBack={() => handlePageChange('rabbit')} />;
+      case 'turtle-adoption':
+        return <TurtleAdoptionPage onGoHome={handleGoHome} onGoBack={() => handlePageChange('turtle')} />;
       default:
         return <HomePage 
           user={currentUser} 

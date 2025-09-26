@@ -8,3 +8,12 @@ html {
 body {
   font-family: 'Poppins', sans-serif;
 }
+
+/* Hide scrollbars but keep scroll functionality */
+.no-scrollbar::-webkit-scrollbar { /* Chrome, Safari */
+  display: none;
+}
+.no-scrollbar { /* Firefox and IE/Edge */
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}

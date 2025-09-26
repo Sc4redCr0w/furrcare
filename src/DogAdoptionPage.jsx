@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
+import Dropdown from './components/Dropdown.jsx';
 
 const DogAdoptionPage = ({ onGoHome, onGoBack }) => {
   const [dogs, setDogs] = useState([]);
   const [filteredDogs, setFilteredDogs] = useState([]);
+  const [selectedDog, setSelectedDog] = useState(null);
   const [filters, setFilters] = useState({
     breed: '',
     age: '',
@@ -11,11 +13,12 @@ const DogAdoptionPage = ({ onGoHome, onGoBack }) => {
     vaccination: ''
   });
 
-  // Fetch dogs data
+  // ✅ Fetch dogs data
   useEffect(() => {
     const fetchDogs = async () => {
       try {
         const response = await fetch('/dogs.json');
+        if (!response.ok) throw new Error('Failed to load dogs.json');
         const dogsData = await response.json();
         setDogs(dogsData);
         setFilteredDogs(dogsData);
@@ -23,16 +26,18 @@ const DogAdoptionPage = ({ onGoHome, onGoBack }) => {
         console.error('Error fetching dogs data:', error);
       }
     };
-    
+
     fetchDogs();
   }, []);
 
-  // Apply filters
+  // ✅ Apply filters
   useEffect(() => {
-    let filtered = dogs;
+    let filtered = [...dogs];
 
     if (filters.breed) {
-      filtered = filtered.filter(dog => dog.breed.toLowerCase().includes(filters.breed.toLowerCase()));
+      filtered = filtered.filter(dog =>
+        dog.breed.toLowerCase().includes(filters.breed.toLowerCase())
+      );
     }
 
     if (filters.age) {
@@ -45,7 +50,9 @@ const DogAdoptionPage = ({ onGoHome, onGoBack }) => {
     }
 
     if (filters.location) {
-      filtered = filtered.filter(dog => dog.location.toLowerCase().includes(filters.location.toLowerCase()));
+      filtered = filtered.filter(dog =>
+        dog.location.toLowerCase().includes(filters.location.toLowerCase())
+      );
     }
 
     if (filters.vaccination) {
@@ -71,10 +78,13 @@ const DogAdoptionPage = ({ onGoHome, onGoBack }) => {
     });
   };
 
+  const handleDogClick = (dog) => setSelectedDog(dog);
+  const closeDogDetails = () => setSelectedDog(null);
+
   return (
     <div className="min-h-screen w-full bg-black text-white relative overflow-hidden">
-      {/* Background Pattern */}
-      <div className="absolute inset-0 opacity-10">
+      {/* 🐾 Background Pattern */}
+      <div className="absolute inset-0 opacity-10 pointer-events-none">
         <div className="absolute top-20 left-20 text-white/10 text-6xl">🐾</div>
         <div className="absolute top-40 right-32 text-white/10 text-4xl">🐾</div>
         <div className="absolute bottom-40 left-16 text-white/10 text-8xl">🐾</div>
@@ -83,13 +93,12 @@ const DogAdoptionPage = ({ onGoHome, onGoBack }) => {
         <div className="absolute top-1/3 right-1/4 text-white/10 text-6xl">🐾</div>
       </div>
 
-      {/* Header */}
-      <header className="flex items-center justify-between p-6 border-b border-white/20">
+      {/* 🔝 Header */}
+      <header className="flex items-center justify-between p-6 border-b border-white/20 relative z-10">
         <div className="flex items-center gap-3">
           <div className="text-2xl text-orange-400">🐾</div>
           <span className="text-2xl font-bold">FURCARE</span>
         </div>
-        
         <div className="flex items-center gap-4">
           <button 
             onClick={onGoBack}
@@ -101,15 +110,15 @@ const DogAdoptionPage = ({ onGoHome, onGoBack }) => {
             onClick={onGoHome}
             className="text-white hover:text-orange-400 transition-colors duration-300 underline"
           >
-            Go Back To Home Page
+            Go Home
           </button>
         </div>
       </header>
 
-      {/* Main Content */}
-      <div className="px-8 py-6">
+      {/* 📦 Main Content */}
+      <div className="px-8 py-6 relative z-10">
         <div className="max-w-7xl mx-auto">
-          {/* Page Title */}
+          {/* Title */}
           <motion.div
             initial={{ y: -20, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
@@ -131,66 +140,69 @@ const DogAdoptionPage = ({ onGoHome, onGoBack }) => {
           >
             <div className="flex flex-wrap gap-4 items-center">
               <h3 className="text-white font-bold text-lg">Filters:</h3>
-              
-              {/* Breed Filter */}
-              <select 
+
+              {/* Breed */}
+              <Dropdown
                 value={filters.breed}
-                onChange={(e) => handleFilterChange('breed', e.target.value)}
-                className="bg-gray-800 border border-white/30 rounded-lg px-4 py-2 text-white"
-              >
-                <option value="">All Breeds</option>
-                <option value="Golden Retriever">Golden Retriever</option>
-                <option value="German Shepherd">German Shepherd</option>
-                <option value="Labrador">Labrador</option>
-                <option value="Bulldog">Bulldog</option>
-                <option value="Beagle">Beagle</option>
-                <option value="Rottweiler">Rottweiler</option>
-                <option value="Poodle">Poodle</option>
-                <option value="Husky">Husky</option>
-                <option value="Border Collie">Border Collie</option>
-              </select>
+                onChange={(v) => handleFilterChange('breed', v)}
+                placeholder="All Breeds"
+                options={[
+                  { value: '', label: 'All Breeds' },
+                  { value: 'Golden Retriever', label: 'Golden Retriever' },
+                  { value: 'German Shepherd', label: 'German Shepherd' },
+                  { value: 'Labrador', label: 'Labrador' },
+                  { value: 'Bulldog', label: 'Bulldog' },
+                  { value: 'Beagle', label: 'Beagle' },
+                  { value: 'Rottweiler', label: 'Rottweiler' },
+                  { value: 'Poodle', label: 'Poodle' },
+                  { value: 'Husky', label: 'Husky' },
+                  { value: 'Border Collie', label: 'Border Collie' },
+                ]}
+              />
 
-              {/* Age Filter */}
-              <select 
+              {/* Age */}
+              <Dropdown
                 value={filters.age}
-                onChange={(e) => handleFilterChange('age', e.target.value)}
-                className="bg-gray-800 border border-white/30 rounded-lg px-4 py-2 text-white"
-              >
-                <option value="">All Ages</option>
-                <option value="1-2">1-2 years</option>
-                <option value="3-5">3-5 years</option>
-                <option value="6+">6+ years</option>
-              </select>
+                onChange={(v) => handleFilterChange('age', v)}
+                placeholder="All Ages"
+                options={[
+                  { value: '', label: 'All Ages' },
+                  { value: '1-2', label: '1-2 years' },
+                  { value: '3-5', label: '3-5 years' },
+                  { value: '6+', label: '6+ years' },
+                ]}
+              />
 
-              {/* Location Filter */}
-              <select 
+              {/* Location */}
+              <Dropdown
                 value={filters.location}
-                onChange={(e) => handleFilterChange('location', e.target.value)}
-                className="bg-gray-800 border border-white/30 rounded-lg px-4 py-2 text-white"
-              >
-                <option value="">All Locations</option>
-                <option value="New York">New York</option>
-                <option value="California">California</option>
-                <option value="Texas">Texas</option>
-                <option value="Florida">Florida</option>
-                <option value="Illinois">Illinois</option>
-                <option value="Colorado">Colorado</option>
-                <option value="Washington">Washington</option>
-                <option value="Oregon">Oregon</option>
-              </select>
+                onChange={(v) => handleFilterChange('location', v)}
+                placeholder="All Locations"
+                options={[
+                  { value: '', label: 'All Locations' },
+                  { value: 'New York', label: 'New York' },
+                  { value: 'California', label: 'California' },
+                  { value: 'Texas', label: 'Texas' },
+                  { value: 'Florida', label: 'Florida' },
+                  { value: 'Illinois', label: 'Illinois' },
+                  { value: 'Colorado', label: 'Colorado' },
+                  { value: 'Washington', label: 'Washington' },
+                  { value: 'Oregon', label: 'Oregon' },
+                ]}
+              />
 
-              {/* Vaccination Filter */}
-              <select 
+              {/* Vaccination */}
+              <Dropdown
                 value={filters.vaccination}
-                onChange={(e) => handleFilterChange('vaccination', e.target.value)}
-                className="bg-gray-800 border border-white/30 rounded-lg px-4 py-2 text-white"
-              >
-                <option value="">All Vaccination Status</option>
-                <option value="yes">Vaccinated</option>
-                <option value="no">Not Vaccinated</option>
-              </select>
+                onChange={(v) => handleFilterChange('vaccination', v)}
+                placeholder="All Vaccination Status"
+                options={[
+                  { value: '', label: 'All Vaccination Status' },
+                  { value: 'yes', label: 'Vaccinated' },
+                  { value: 'no', label: 'Not Vaccinated' },
+                ]}
+              />
 
-              {/* Clear Filters */}
               <button 
                 onClick={clearFilters}
                 className="bg-orange-400 hover:bg-orange-500 text-black px-4 py-2 rounded-lg font-medium transition-colors duration-300"
@@ -198,7 +210,6 @@ const DogAdoptionPage = ({ onGoHome, onGoBack }) => {
                 Clear Filters
               </button>
             </div>
-            
             <div className="mt-4 text-white/70">
               Showing {filteredDogs.length} of {dogs.length} dogs
             </div>
@@ -217,8 +228,9 @@ const DogAdoptionPage = ({ onGoHome, onGoBack }) => {
                 initial={{ scale: 0.9, opacity: 0 }}
                 animate={{ scale: 1, opacity: 1 }}
                 transition={{ delay: 0.1 * index }}
-                className="text-white rounded-2xl p-6 hover:shadow-2xl hover:shadow-white/20 transition-all duration-300 hover:-translate-y-2"
+                className="text-white rounded-2xl p-6 hover:shadow-2xl hover:shadow-white/20 transition-all duration-300 hover:-translate-y-2 cursor-pointer"
                 style={{ backgroundColor: 'rgb(13, 17, 23)' }}
+                onClick={() => handleDogClick(dog)}
               >
                 <div className="w-full h-48 rounded-xl overflow-hidden mb-4">
                   <img 
@@ -227,42 +239,24 @@ const DogAdoptionPage = ({ onGoHome, onGoBack }) => {
                     className="w-full h-full object-cover"
                   />
                 </div>
-                
-                <div className="space-y-3">
-                  <h3 className="text-2xl font-bold text-orange-400">{dog.name}</h3>
-                  
-                  <div className="space-y-1 text-sm">
-                    <p><span className="text-white/70">Breed:</span> {dog.breed}</p>
-                    <p><span className="text-white/70">Age:</span> {dog.age} years</p>
-                    <p><span className="text-white/70">Location:</span> {dog.location}</p>
-                    <p>
-                      <span className="text-white/70">Vaccination:</span> 
-                      <span className={dog.vaccination === 'yes' ? 'text-green-400 ml-1' : 'text-red-400 ml-1'}>
-                        {dog.vaccination === 'yes' ? '✓ Yes' : '✗ No'}
-                      </span>
-                    </p>
-                  </div>
-                  
-                  <p className="text-gray-300 text-sm leading-relaxed">
-                    {dog.description}
-                  </p>
-                  
-                  <button className="w-full bg-orange-400 hover:bg-orange-500 text-black px-4 py-2 rounded-lg font-medium transition-colors duration-300 flex items-center justify-center gap-2">
-                    Adopt {dog.name}
-                    <span className="text-lg">🏠</span>
-                  </button>
-                </div>
+                <h3 className="text-2xl font-bold text-orange-400 mb-2">{dog.name}</h3>
+                <p className="text-sm text-white/80 mb-2">{dog.breed} • {dog.age} yrs • {dog.location}</p>
+                <p className={`text-sm font-medium ${dog.vaccination === 'yes' ? 'text-green-400' : 'text-red-400'}`}>
+                  {dog.vaccination === 'yes' ? '✓ Vaccinated' : '✗ Not Vaccinated'}
+                </p>
+                <button 
+                  className="mt-4 w-full bg-orange-400 hover:bg-orange-500 text-black px-4 py-2 rounded-lg font-medium transition-colors duration-300"
+                  onClick={(e) => { e.stopPropagation(); handleDogClick(dog); }}
+                >
+                  View Details 👁️
+                </button>
               </motion.div>
             ))}
           </motion.div>
 
           {/* No Results */}
           {filteredDogs.length === 0 && dogs.length > 0 && (
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              className="text-center py-12"
-            >
+            <div className="text-center py-12">
               <p className="text-white/70 text-lg">No dogs found matching your criteria.</p>
               <button 
                 onClick={clearFilters}
@@ -270,10 +264,71 @@ const DogAdoptionPage = ({ onGoHome, onGoBack }) => {
               >
                 Clear Filters
               </button>
-            </motion.div>
+            </div>
           )}
         </div>
       </div>
+
+      {/* 🐶 Dog Details Modal */}
+      <AnimatePresence>
+        {selectedDog && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 bg-black/80 backdrop-blur-sm flex items-center justify-center p-4 z-50"
+          >
+            <motion.div
+              initial={{ scale: 0.8, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.8, opacity: 0 }}
+              className="bg-gray-900 rounded-2xl p-8 max-w-2xl w-full max-h-[90vh] overflow-y-auto"
+            >
+              {/* Close Button */}
+              <div className="flex justify-end mb-4">
+                <button 
+                  onClick={closeDogDetails}
+                  className="text-white/70 hover:text-white text-2xl w-8 h-8 flex items-center justify-center rounded-full hover:bg-white/10 transition-colors duration-300"
+                >
+                  ×
+                </button>
+              </div>
+
+              {/* Dog Details */}
+              <div className="flex flex-col lg:flex-row gap-8">
+                <div className="lg:w-1/2">
+                  <div className="w-full h-80 rounded-xl overflow-hidden mb-4">
+                    <img 
+                      src={selectedDog.image} 
+                      alt={selectedDog.name}
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                </div>
+                <div className="lg:w-1/2 space-y-6">
+                  <h2 className="text-4xl font-bold text-orange-400">{selectedDog.name}</h2>
+                  <p className="text-white/80">{selectedDog.breed} • {selectedDog.age} yrs • {selectedDog.location}</p>
+                  <p className={selectedDog.vaccination === 'yes' ? 'text-green-400 font-medium' : 'text-red-400 font-medium'}>
+                    {selectedDog.vaccination === 'yes' ? '✓ Vaccinated' : '✗ Not Vaccinated'}
+                  </p>
+                  <p className="text-gray-300">{selectedDog.description}</p>
+                  <div className="space-y-3">
+                    <button className="w-full bg-orange-400 hover:bg-orange-500 text-black px-6 py-3 rounded-lg font-bold">
+                      Adopt {selectedDog.name} 🏠
+                    </button>
+                    <button 
+                      onClick={closeDogDetails}
+                      className="w-full bg-white/10 hover:bg-white/20 text-white px-6 py-3 rounded-lg font-medium"
+                    >
+                      Close
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 };

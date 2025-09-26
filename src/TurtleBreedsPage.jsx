@@ -1,7 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 
-const TurtleBreedsPage = ({ onGoHome }) => {
+const TurtleBreedsPage = ({ onGoHome, onAdoptNow }) => {
   const turtleSpecies = [
     {
       id: 1,
@@ -94,8 +94,8 @@ const TurtleBreedsPage = ({ onGoHome }) => {
                   Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam
                 </p>
                 
-                <button className="bg-orange-400 hover:bg-orange-500 text-black px-8 py-3 rounded-full font-bold transition-colors duration-300 flex items-center gap-2">
-                  BOOK NOW
+                <button onClick={onAdoptNow} className="bg-orange-400 hover:bg-orange-500 text-black px-8 py-3 rounded-full font-bold transition-colors duration-300 flex items-center gap-2">
+                  ADOPT NOW
                   <span className="text-xl">▶</span>
                 </button>
               </div>
