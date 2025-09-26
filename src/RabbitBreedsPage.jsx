@@ -1,7 +1,9 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { motion } from 'framer-motion';
+import Navbar from './components/Navbar.jsx';
+import FloatingPaws from './components/FloatingPaws.jsx';
 
-const RabbitBreedsPage = ({ onGoHome, onAdoptNow }) => {
+const RabbitBreedsPage = ({ onGoHome, onAdoptNow, user, onLogout, onNavigateToCheckup, onNavigateToGrooming }) => {
   const [isLoading, setIsLoading] = useState(true);
   const rabbitBreeds = [
     {
@@ -93,43 +95,18 @@ const RabbitBreedsPage = ({ onGoHome, onAdoptNow }) => {
 
   return (
     <div className="min-h-screen w-full bg-black text-white relative overflow-hidden">
-      {/* Background Pattern */}
-      <div className="absolute inset-0 opacity-10 pointer-events-none">
-        <div className="absolute top-20 left-20 text-white/10 text-6xl">🐾</div>
-        <div className="absolute top-40 right-32 text-white/10 text-4xl">🐾</div>
-        <div className="absolute bottom-40 left-16 text-white/10 text-8xl">🐾</div>
-        <div className="absolute bottom-20 right-20 text-white/10 text-5xl">🐾</div>
-        <div className="absolute top-1/2 left-1/4 text-white/10 text-7xl">🐾</div>
-        <div className="absolute top-1/3 right-1/4 text-white/10 text-6xl">🐾</div>
-      </div>
+      {/* Floating Paw Backgrounds */}
+      <FloatingPaws />
 
       {/* Header */}
-      <header className="flex items-center justify-between p-6 border-b border-white/20 relative z-10">
-        <div className="flex items-center gap-3">
-          <div className="text-2xl text-orange-400">🐾</div>
-          <span className="text-2xl font-bold">FURCARE</span>
-        </div>
-
-        <button 
-          onClick={onGoHome}
-          className="text-white hover:text-orange-400 transition-colors duration-300 underline"
-        >
-          Go Back To Home Page
-        </button>
-
-        <div className="flex items-center gap-4">
-          <div className="relative">
-            <input 
-              type="text" 
-              placeholder="Search..." 
-              className="bg-white/10 border border-white/30 rounded-full px-4 py-2 text-white placeholder-white/70 w-64"
-            />
-            <div className="absolute right-3 top-1/2 transform -translate-y-1/2 text-white/70 pointer-events-none">
-              🔍
-            </div>
-          </div>
-        </div>
-      </header>
+      <Navbar 
+        user={user}
+        onLogout={onLogout}
+        onGoHome={onGoHome}
+        onNavigateToCheckup={onNavigateToCheckup}
+        onNavigateToGrooming={onNavigateToGrooming}
+        currentPage="breeds"
+      />
 
       {/* Main Content */}
       <div className="flex items-center justify-center min-h-[calc(100vh-100px)] px-8 relative z-10">

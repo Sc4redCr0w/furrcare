@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Dropdown from './components/Dropdown.jsx';
+import Navbar from './components/Navbar.jsx';
+import FloatingPaws from './components/FloatingPaws.jsx';
 
-const DogAdoptionPage = ({ onGoHome, onGoBack }) => {
+const DogAdoptionPage = ({ onGoHome, onGoBack, user, onLogout, onNavigateToCheckup, onNavigateToGrooming }) => {
   const [isLoading, setIsLoading] = useState(true);
   const [dogs, setDogs] = useState([]);
   const [filteredDogs, setFilteredDogs] = useState([]);
@@ -145,37 +147,18 @@ const DogAdoptionPage = ({ onGoHome, onGoBack }) => {
 
   return (
     <div className="min-h-screen w-full bg-black text-white relative overflow-hidden">
-      {/* 🐾 Background Pattern */}
-      <div className="absolute inset-0 opacity-10 pointer-events-none">
-        <div className="absolute top-20 left-20 text-white/10 text-6xl">🐾</div>
-        <div className="absolute top-40 right-32 text-white/10 text-4xl">🐾</div>
-        <div className="absolute bottom-40 left-16 text-white/10 text-8xl">🐾</div>
-        <div className="absolute bottom-20 right-20 text-white/10 text-5xl">🐾</div>
-        <div className="absolute top-1/2 left-1/4 text-white/10 text-7xl">🐾</div>
-        <div className="absolute top-1/3 right-1/4 text-white/10 text-6xl">🐾</div>
-      </div>
+      {/* Floating Paw Backgrounds */}
+      <FloatingPaws />
 
       {/* 🔝 Header */}
-      <header className="flex items-center justify-between p-6 border-b border-white/20 relative z-10">
-        <div className="flex items-center gap-3">
-          <div className="text-2xl text-orange-400">🐾</div>
-          <span className="text-2xl font-bold">FURCARE</span>
-        </div>
-        <div className="flex items-center gap-4">
-          <button 
-            onClick={onGoBack}
-            className="text-white hover:text-orange-400 transition-colors duration-300 underline"
-          >
-            Back to Dog Breeds
-          </button>
-          <button 
-            onClick={onGoHome}
-            className="text-white hover:text-orange-400 transition-colors duration-300 underline"
-          >
-            Go Home
-          </button>
-        </div>
-      </header>
+      <Navbar 
+        user={user}
+        onLogout={onLogout}
+        onGoHome={onGoHome}
+        onNavigateToCheckup={onNavigateToCheckup}
+        onNavigateToGrooming={onNavigateToGrooming}
+        currentPage="adoption"
+      />
 
       {/* 📦 Main Content */}
       <div className="px-8 py-6 relative z-10">

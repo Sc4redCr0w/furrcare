@@ -62,35 +62,89 @@ function App() {
           onGoHome={handleGoHome} 
           user={currentUser}
           onLogout={handleLogout}
+          onNavigateToCheckup={() => handlePageChange('checkup')}
+          onNavigateToGrooming={() => handlePageChange('grooming')}
         />;
       case 'checkup':
         return <CheckupPage 
           onGoHome={handleGoHome} 
           user={currentUser}
           onLogout={handleLogout}
+          onNavigateToCheckup={() => handlePageChange('checkup')}
+          onNavigateToGrooming={() => handlePageChange('grooming')}
         />;
       case 'dog':
         return <DogBreedsPage 
           onGoHome={handleGoHome} 
+          user={currentUser}
+          onLogout={handleLogout}
+          onNavigateToCheckup={() => handlePageChange('checkup')}
+          onNavigateToGrooming={() => handlePageChange('grooming')}
           onAdoptNow={() => handlePageChange('dog-adoption')}
         />;
       case 'cat':
-        return <CatBreedsPage onGoHome={handleGoHome} onAdoptNow={() => handlePageChange('cat-adoption')} />;
+        return <CatBreedsPage 
+          onGoHome={handleGoHome} 
+          user={currentUser}
+          onLogout={handleLogout}
+          onNavigateToCheckup={() => handlePageChange('checkup')}
+          onNavigateToGrooming={() => handlePageChange('grooming')}
+          onAdoptNow={() => handlePageChange('cat-adoption')} 
+        />;
       case 'rabbit':
-        return <RabbitBreedsPage onGoHome={handleGoHome} onAdoptNow={() => handlePageChange('rabbit-adoption')} />;
+        return <RabbitBreedsPage 
+          onGoHome={handleGoHome} 
+          user={currentUser}
+          onLogout={handleLogout}
+          onNavigateToCheckup={() => handlePageChange('checkup')}
+          onNavigateToGrooming={() => handlePageChange('grooming')}
+          onAdoptNow={() => handlePageChange('rabbit-adoption')} 
+        />;
       case 'turtle':
-        return <TurtleBreedsPage onGoHome={handleGoHome} onAdoptNow={() => handlePageChange('turtle-adoption')} />;
+        return <TurtleBreedsPage 
+          onGoHome={handleGoHome} 
+          user={currentUser}
+          onLogout={handleLogout}
+          onNavigateToCheckup={() => handlePageChange('checkup')}
+          onNavigateToGrooming={() => handlePageChange('grooming')}
+          onAdoptNow={() => handlePageChange('turtle-adoption')} 
+        />;
       case 'dog-adoption':
         return <DogAdoptionPage 
           onGoHome={handleGoHome} 
+          user={currentUser}
+          onLogout={handleLogout}
+          onNavigateToCheckup={() => handlePageChange('checkup')}
+          onNavigateToGrooming={() => handlePageChange('grooming')}
           onGoBack={() => handlePageChange('dog')}
         />;
       case 'cat-adoption':
-        return <CatAdoptionPage onGoHome={handleGoHome} onGoBack={() => handlePageChange('cat')} />;
+        return <CatAdoptionPage 
+          onGoHome={handleGoHome} 
+          user={currentUser}
+          onLogout={handleLogout}
+          onNavigateToCheckup={() => handlePageChange('checkup')}
+          onNavigateToGrooming={() => handlePageChange('grooming')}
+          onGoBack={() => handlePageChange('cat')} 
+        />;
       case 'rabbit-adoption':
-        return <RabbitAdoptionPage onGoHome={handleGoHome} onGoBack={() => handlePageChange('rabbit')} />;
+        return <RabbitAdoptionPage 
+          onGoHome={handleGoHome} 
+          user={currentUser}
+          onLogout={handleLogout}
+          onNavigateToCheckup={() => handlePageChange('checkup')}
+          onNavigateToGrooming={() => handlePageChange('grooming')}
+          onGoBack={() => handlePageChange('rabbit')} 
+        />;
       case 'turtle-adoption':
-        return <TurtleAdoptionPage onGoHome={handleGoHome} onGoBack={() => handlePageChange('turtle')} />;
+        return <TurtleAdoptionPage 
+          onGoHome={handleGoHome} 
+          user={currentUser}
+          onLogout={handleLogout}
+          onNavigateToCheckup={() => handlePageChange('checkup')}
+          onNavigateToGrooming={() => handlePageChange('grooming')}
+          onGoBack={() => handlePageChange('turtle')} 
+        />;
       default:
         return <HomePage 
           user={currentUser} 

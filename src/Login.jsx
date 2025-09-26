@@ -1,19 +1,7 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
 import credentialsData from "./data/credentials.json";
-
-const floatingVariants = {
-  initial: { y: 0, opacity: 0.6 },
-  animate: {
-    y: [0, -20, 0],
-    opacity: [0.6, 0.8, 0.6],
-    transition: {
-      duration: 4,
-      repeat: Infinity,
-      ease: "easeInOut",
-    },
-  },
-};
+import FloatingPaws from "./components/FloatingPaws";
 
 const Login = ({ onLogin }) => {
   const [formData, setFormData] = useState({
@@ -51,64 +39,7 @@ const Login = ({ onLogin }) => {
   return (
     <div className="h-screen w-full bg-black flex flex-col items-center justify-center text-white relative overflow-hidden">
       {/* Floating Paw Backgrounds */}
-      <motion.div
-        className="absolute top-20 left-20 text-white/60 text-9xl"
-        variants={floatingVariants}
-        initial="initial"
-        animate="animate"
-      >
-        🐾
-      </motion.div>
-
-      <motion.div
-        className="absolute top-16 right-16 text-white/50 text-8xl"
-        variants={floatingVariants}
-        initial="initial"
-        animate="animate"
-        transition={{ delay: 1 }}
-      >
-        🐾
-      </motion.div>
-
-      <motion.div
-        className="absolute bottom-20 left-16 text-white/55 text-10xl"
-        variants={floatingVariants}
-        initial="initial"
-        animate="animate"
-        transition={{ delay: 2 }}
-      >
-        🐾
-      </motion.div>
-
-      <motion.div
-        className="absolute bottom-24 right-20 text-white/60 text-9xl"
-        variants={floatingVariants}
-        initial="initial"
-        animate="animate"
-        transition={{ delay: 0.5 }}
-      >
-        🐾
-      </motion.div>
-
-      <motion.div
-        className="absolute top-1/2 left-8 text-white/45 text-7xl"
-        variants={floatingVariants}
-        initial="initial"
-        animate="animate"
-        transition={{ delay: 1.5 }}
-      >
-        🐾
-      </motion.div>
-
-      <motion.div
-        className="absolute top-1/3 right-8 text-white/50 text-8xl"
-        variants={floatingVariants}
-        initial="initial"
-        animate="animate"
-        transition={{ delay: 2.5 }}
-      >
-        🐾
-      </motion.div>
+      <FloatingPaws />
 
       {/* Navbar */}
       <div className="absolute top-0 left-0 w-full flex items-center justify-between p-4 border-b border-gray-600">

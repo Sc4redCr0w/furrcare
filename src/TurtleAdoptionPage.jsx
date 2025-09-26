@@ -1,8 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Dropdown from './components/Dropdown.jsx';
+import Navbar from './components/Navbar.jsx';
+import FloatingPaws from './components/FloatingPaws.jsx';
 
-const TurtleAdoptionPage = ({ onGoHome, onGoBack }) => {
+const TurtleAdoptionPage = ({ onGoHome, onGoBack, user, onLogout, onNavigateToCheckup, onNavigateToGrooming }) => {
   const [isLoading, setIsLoading] = useState(true);
   const [turtles, setTurtles] = useState([]);
   const [filteredTurtles, setFilteredTurtles] = useState([]);
@@ -115,16 +117,17 @@ const TurtleAdoptionPage = ({ onGoHome, onGoBack }) => {
 
   return (
     <div className="min-h-screen w-full bg-black text-white relative overflow-hidden">
-      <header className="flex items-center justify-between p-6 border-b border-white/20 relative z-10">
-        <div className="flex items-center gap-3">
-          <div className="text-2xl text-orange-400">🐾</div>
-          <span className="text-2xl font-bold">FURCARE</span>
-        </div>
-        <div className="flex items-center gap-4">
-          <button onClick={onGoBack} className="text-white hover:text-orange-400 transition-colors duration-300 underline">Back to Turtle Species</button>
-          <button onClick={onGoHome} className="text-white hover:text-orange-400 transition-colors duration-300 underline">Go Home</button>
-        </div>
-      </header>
+      {/* Floating Paw Backgrounds */}
+      <FloatingPaws />
+      
+      <Navbar 
+        user={user}
+        onLogout={onLogout}
+        onGoHome={onGoHome}
+        onNavigateToCheckup={onNavigateToCheckup}
+        onNavigateToGrooming={onNavigateToGrooming}
+        currentPage="adoption"
+      />
 
       <div className="px-8 py-6 relative z-10">
         <div className="max-w-7xl mx-auto">

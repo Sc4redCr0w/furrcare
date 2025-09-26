@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
+import Navbar from './components/Navbar.jsx';
+import FloatingPaws from './components/FloatingPaws.jsx';
 
-const GroomingPage = ({ onGoHome, user, onLogout }) => {
+const GroomingPage = ({ onGoHome, user, onLogout, onNavigateToCheckup, onNavigateToGrooming }) => {
   const [currentSlide, setCurrentSlide] = useState(0);
 
   const slides = [
@@ -48,38 +50,19 @@ const GroomingPage = ({ onGoHome, user, onLogout }) => {
   };
 
   return (
-    <div className="grooming-page bg-black text-white min-h-screen">
+    <div className="grooming-page bg-black text-white min-h-screen relative overflow-hidden">
+      {/* Floating Paw Backgrounds */}
+      <FloatingPaws />
+      
       {/* Navigation Header */}
-      <header className="bg-black border-b border-gray-800">
-        <div className="max-w-6xl mx-auto flex justify-between items-center py-6 px-8">
-          <div className="flex items-center gap-3">
-            <div className="text-2xl text-orange-500">🐾</div>
-            <span className="text-2xl font-bold text-white">FURCARE</span>
-          </div>
-          <nav className="flex gap-8 items-center">
-            <button 
-              onClick={onGoHome}
-              className="hover:text-orange-500 text-sm font-medium transition-colors"
-            >
-              HOME
-            </button>
-            <a href="#checkups" className="hover:text-orange-500 text-sm font-medium">CHECKUPS</a>
-            <a href="#grooming" className="text-orange-500 text-sm font-medium">GROOMING</a>
-            <a href="#training" className="hover:text-orange-500 text-sm font-medium">TRAINING</a>
-            <a href="#store" className="hover:text-orange-500 text-sm font-medium">STORE</a>
-            <a href="#account" className="hover:text-orange-500 text-sm font-medium">YOUR ACCOUNT</a>
-            <div className="flex items-center gap-4 ml-4">
-              <span className="text-sm text-gray-400">Welcome, {user?.name}</span>
-              <button 
-                onClick={onLogout}
-                className="bg-orange-500 hover:bg-orange-600 text-white px-4 py-2 rounded-full text-sm font-medium transition-colors"
-              >
-                Logout
-              </button>
-            </div>
-          </nav>
-        </div>
-      </header>
+      <Navbar 
+        user={user}
+        onLogout={onLogout}
+        onGoHome={onGoHome}
+        onNavigateToCheckup={onNavigateToCheckup}
+        onNavigateToGrooming={onNavigateToGrooming}
+        currentPage="grooming"
+      />
 
       <main className="max-w-7xl mx-auto px-4 py-8">
         {/* Top Bar */}
