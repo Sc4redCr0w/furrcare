@@ -137,7 +137,7 @@ const HomePage = ({ user, onLogout, onAnimalClick, onNavigateToGrooming, onNavig
                 We specialize in matching families with the right pets while offering
                 grooming, training, and health services for lifelong happiness.
               </p>
-              <button className="learn-more-btn bg-transparent border-2 border-white text-white px-10 py-4 rounded-full text-lg font-medium hover:bg-white hover:text-black transition-all duration-300">
+              <button className="learn-more-btn bg-orange-400 hover:bg-orange-500 text-black px-10 py-4 rounded-full text-lg font-medium transition-all duration-300">
                 Learn More
               </button>
             </div>

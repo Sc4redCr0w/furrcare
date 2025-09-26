@@ -111,7 +111,7 @@ const GroomingPage = ({ onGoHome, user, onLogout, onNavigateToCheckup, onNavigat
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: index * 0.1 }}
-              className="bg-[#1a1a1a] rounded-3xl p-6 hover:scale-105 transition-transform cursor-pointer"
+              className="bg-[#1a1a1a] rounded-3xl p-6 hover:bg-black transition-all duration-300 cursor-pointer transform hover:scale-105 hover:shadow-2xl border border-gray-700 hover:border-orange-400"
             >
               <div className="text-4xl mb-4">{service.icon}</div>
               <h3 className="text-lg font-bold mb-2">{service.title}</h3>
