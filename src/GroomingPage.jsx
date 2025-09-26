@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import Navbar from './components/Navbar.jsx';
 import FloatingPaws from './components/FloatingPaws.jsx';
@@ -10,17 +10,17 @@ const GroomingPage = ({ onGoHome, user, onLogout, onNavigateToCheckup, onNavigat
     {
       title: "Haircut & Styling",
       description: "Professional grooming for a fresh new look",
-      image: "/dog.png",
+      image: "/hairstyle.jpg", // Dedicated hairstyle grooming image
     },
     {
       title: "Bath & Spa",
       description: "Relaxing bath with premium products",
-      image: "/cat.png",
+      image: "/bathnspa.jpg", // Dedicated bath and spa grooming image
     },
     {
       title: "Nail Care",
       description: "Safe nail trimming and paw care",
-      image: "/rabbit.png",
+      image: "/nailcare.jpg", // Dedicated nail care grooming image
     }
   ];
 
@@ -49,6 +49,15 @@ const GroomingPage = ({ onGoHome, user, onLogout, onNavigateToCheckup, onNavigat
     setCurrentSlide((prev) => (prev + 1) % slides.length);
   };
 
+  // Auto-scroll slideshow
+  useEffect(() => {
+    const interval = setInterval(() => {
+      nextSlide();
+    }, 4000); // Change slide every 4 seconds
+
+    return () => clearInterval(interval);
+  }, []);
+
   return (
     <div className="grooming-page bg-black text-white min-h-screen relative overflow-hidden">
       {/* Floating Paw Backgrounds */}
@@ -69,15 +78,9 @@ const GroomingPage = ({ onGoHome, user, onLogout, onNavigateToCheckup, onNavigat
         <div className="relative mb-12">
           <div className="bg-[#1a1a1a] rounded-3xl overflow-hidden relative flex items-center justify-between p-8 lg:p-12 min-h-[350px]">
             <div className="flex-1 pr-8">
-              <motion.h1 
-                key={currentSlide}
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6 }}
-                className="text-4xl lg:text-6xl font-bold text-white mb-6"
-              >
+              <h1 className="text-4xl lg:text-6xl font-bold text-white mb-6">
                 <span className="text-orange-400">Grooming</span> Services for Pets
-              </motion.h1>
+              </h1>
               <p className="text-lg text-gray-400 max-w-md">
                 Keep your furry friends clean, healthy, and happy with our professional grooming care.
               </p>
@@ -96,12 +99,6 @@ const GroomingPage = ({ onGoHome, user, onLogout, onNavigateToCheckup, onNavigat
                   className="w-32 h-32 mx-auto rounded-full object-cover border-4 border-gray-700"
                 />
               </div>
-              <button 
-                onClick={nextSlide}
-                className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-orange-500 hover:bg-orange-600 text-white p-3 rounded-full"
-              >
-                ➝
-              </button>
             </div>
           </div>
         </div>

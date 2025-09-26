@@ -336,7 +336,7 @@ const HomePage = ({ user, onLogout, onAnimalClick, onNavigateToGrooming, onNavig
                       onClick={() => setCurrentStoryIndex((prev) => 
                         prev === 0 ? stories.length - 1 : prev - 1
                       )}
-                      className="bg-white/20 hover:bg-white/30 text-white p-3 rounded-full backdrop-blur-sm transition-all duration-300 pointer-events-auto"
+                      className="bg-white/20 hover:bg-white/30 text-white w-12 h-12 flex items-center justify-center rounded-full backdrop-blur-sm transition-all duration-300 pointer-events-auto"
                       aria-label="Previous story"
                     >
                       <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -347,7 +347,7 @@ const HomePage = ({ user, onLogout, onAnimalClick, onNavigateToGrooming, onNavig
                       onClick={() => setCurrentStoryIndex((prev) => 
                         prev === stories.length - 1 ? 0 : prev + 1
                       )}
-                      className="bg-white/20 hover:bg-white/30 text-white p-3 rounded-full backdrop-blur-sm transition-all duration-300 pointer-events-auto"
+                      className="bg-white/20 hover:bg-white/30 text-white w-12 h-12 flex items-center justify-center rounded-full backdrop-blur-sm transition-all duration-300 pointer-events-auto"
                       aria-label="Next story"
                     >
                       <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
