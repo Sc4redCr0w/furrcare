@@ -54,25 +54,35 @@ const Login = ({ onLogin }) => {
 
       {/* Content */}
       <div className="flex flex-col md:flex-row items-center justify-center w-full px-6 relative z-10">
-        {/* Images (animated entry) */}
+        {/* Images (smooth fade-in only) */}
         <motion.div
-          initial={{ x: -300, opacity: 0 }}
-          animate={{ x: 0, opacity: 1 }}
-          transition={{ duration: 1, ease: "easeOut" }}
+          initial={{ opacity: 0, scale: 0.9 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ 
+            duration: 1.0,
+            ease: "easeOut"
+          }}
           className="flex justify-center md:w-1/2 mb-8 md:mb-0"
         >
-          <img
+          <motion.img
             src="/login_pet.png"
             alt="Dog and Cat"
             className="h-96 object-contain"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.2, duration: 0.8 }}
           />
         </motion.div>
 
-        {/* Login Form (fade + slide in) */}
+        {/* Login Form (rise from bottom) */}
         <motion.div
-          initial={{ y: 50, opacity: 0 }}
+          initial={{ y: 80, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
-          transition={{ delay: 0.5, duration: 0.8 }}
+          transition={{ 
+            delay: 0.3,
+            duration: 0.7,
+            ease: "easeOut"
+          }}
           className="md:w-1/2 flex flex-col items-center"
         >
           <div className="p-10 border-2 border-white/20 rounded-3xl bg-white/5 backdrop-blur-sm w-full max-w-md">
