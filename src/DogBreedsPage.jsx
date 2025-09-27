@@ -217,11 +217,10 @@ const DogBreedsPage = ({ onGoHome, onAdoptNow, user, onLogout, onNavigateToCheck
                 <button 
                   onClick={handlePrev}
                   aria-label="Previous"
-                  className="w-10 h-10 bg-orange-400 hover:bg-orange-500 rounded-full flex items-center justify-center transition-colors duration-300 shadow-md"
+                  className="bg-orange-400/20 hover:bg-orange-400/30 text-orange-400 w-10 h-10 flex items-center justify-center rounded-full backdrop-blur-sm transition-all duration-300"
                 >
-                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="black" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                    <path d="M12 5v14" />
-                    <path d="M6 11l6-6 6 6" />
+                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 15l7-7 7 7" />
                   </svg>
                 </button>
               </div>
@@ -229,11 +228,10 @@ const DogBreedsPage = ({ onGoHome, onAdoptNow, user, onLogout, onNavigateToCheck
                 <button 
                   onClick={handleNext}
                   aria-label="Next"
-                  className="w-10 h-10 bg-orange-400 hover:bg-orange-500 rounded-full flex items-center justify-center transition-colors duration-300 shadow-md"
+                  className="bg-orange-400/20 hover:bg-orange-400/30 text-orange-400 w-10 h-10 flex items-center justify-center rounded-full backdrop-blur-sm transition-all duration-300"
                 >
-                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="black" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                    <path d="M12 19V5" />
-                    <path d="M6 13l6 6 6-6" />
+                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                   </svg>
                 </button>
               </div>
