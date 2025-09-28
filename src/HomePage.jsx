@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { useTheme } from './contexts/ThemeContext.jsx';
 import Navbar from './components/Navbar.jsx';
 import FloatingPaws from './components/FloatingPaws.jsx';
 import Chatbot from './Chatbot.jsx';
 
 const HomePage = ({ user, onLogout, onAnimalClick, onNavigateToGrooming, onNavigateToCheckup }) => {
+  const { colors, contentVisible } = useTheme();
   const [isLoading, setIsLoading] = useState(true);
   const [imagesLoaded, setImagesLoaded] = useState(0);
   const [stories, setStories] = useState([]);
@@ -54,7 +56,7 @@ const HomePage = ({ user, onLogout, onAnimalClick, onNavigateToGrooming, onNavig
 
   // Loading Animation
   const LoadingAnimation = () => (
-    <div className="fixed inset-0 bg-black flex flex-col items-center justify-center z-50">
+    <div className={`fixed inset-0 ${colors.background} flex flex-col items-center justify-center z-50`}>
       <div className="flex items-center space-x-4 mb-8">
         {[...Array(5)].map((_, index) => (
           <motion.div
@@ -68,7 +70,7 @@ const HomePage = ({ user, onLogout, onAnimalClick, onNavigateToGrooming, onNavig
         ))}
       </div>
       <motion.div
-        className="text-white text-xl font-medium mb-4"
+        className={`${colors.text} text-xl font-medium mb-4`}
         animate={{ opacity: [0.5, 1, 0.5] }}
         transition={{ duration: 1.5, repeat: Infinity }}
       >
@@ -83,7 +85,7 @@ const HomePage = ({ user, onLogout, onAnimalClick, onNavigateToGrooming, onNavig
   if (isLoading) return <LoadingAnimation />;
 
   return (
-    <div className="home-page bg-black text-white min-h-screen relative overflow-hidden">
+    <div className={`home-page ${colors.background} ${colors.text} min-h-screen relative overflow-hidden transition-colors duration-300`}>
       {/* Floating Paw Backgrounds */}
       <FloatingPaws />
 
@@ -96,16 +98,21 @@ const HomePage = ({ user, onLogout, onAnimalClick, onNavigateToGrooming, onNavig
         currentPage="home"
       />
 
-      {/* Main Content */}
+      {/* Main Content with fade effect */}
+      <div 
+        className={`transition-opacity duration-500 ${
+          contentVisible ? 'opacity-100' : 'opacity-0'
+        }`}
+      >
       <main className="main-content max-w-6xl mx-auto px-8 py-16">
         {/* Hero */}
         <section className="hero-section mb-16">
           <div className="hero-content grid grid-cols-1 items-center">
-            <div className="hero-text p-10 border-2 border-white/20 rounded-3xl bg-white/5 backdrop-blur-sm text-center">
-              <h1 className="text-4xl lg:text-6xl font-bold leading-tight mb-8 text-white">
+            <div className={`hero-text p-10 border-2 ${colors.border} rounded-3xl ${colors.card} backdrop-blur-sm text-center transition-all duration-300`}>
+              <h1 className={`text-4xl lg:text-6xl font-bold leading-tight mb-8 ${colors.text} transition-colors duration-300`}>
                 Paws, Claws, and Endless Love
               </h1>
-              <p className="text-lg lg:text-xl leading-relaxed mb-10 text-white/80">
+              <p className={`text-lg lg:text-xl leading-relaxed mb-10 ${colors.textSecondary} transition-colors duration-300`}>
                 We specialize in matching families with the right pets while offering
                 grooming, training, and health services for lifelong happiness.
               </p>
@@ -126,13 +133,13 @@ const HomePage = ({ user, onLogout, onAnimalClick, onNavigateToGrooming, onNavig
           ].map((animal) => (
             <div
               key={animal.id}
-              className="pet-card rounded-3xl hover:transform hover:-translate-y-2 transition-transform duration-300 relative group cursor-pointer border-2 border-white/20"
+              className={`pet-card rounded-3xl hover:transform hover:-translate-y-2 transition-all duration-300 relative group cursor-pointer border-2 ${colors.border}`}
               onClick={() => onAnimalClick(animal.id)}
             >
               <img
                 src={animal.img}
                 alt={animal.label}
-                className="pet-image w-full h-64 object-cover rounded-lg hover:shadow-2xl hover:shadow-white/50 transition-all duration-300 group-hover:brightness-50"
+                className="pet-image w-full h-64 object-cover rounded-lg hover:shadow-2xl hover:shadow-orange-400/50 transition-all duration-300 group-hover:brightness-50"
               />
               <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
                 <span className="text-white text-2xl font-bold">{animal.label}</span>
@@ -163,20 +170,20 @@ const HomePage = ({ user, onLogout, onAnimalClick, onNavigateToGrooming, onNavig
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 0.8 }}
             transition={{ duration: 0.3 }}
-            className="fixed inset-0 bg-black z-50 overflow-y-auto"
+            className={`fixed inset-0 ${colors.background} z-50 overflow-y-auto transition-colors duration-300`}
           >
             <FloatingPaws />
             {/* Close Button */}
             <button
               onClick={closeStoriesModal}
-              className="absolute top-8 right-8 bg-white/20 hover:bg-white/30 text-white p-3 rounded-full backdrop-blur-sm transition-all duration-300 z-10"
+              className={`absolute top-8 right-8 ${colors.card} hover:${colors.cardHover} ${colors.text} p-3 rounded-full backdrop-blur-sm transition-all duration-300 z-10`}
             >
               ✖
             </button>
 
             {/* Modal Content */}
             <div className="relative z-10 max-w-6xl mx-auto px-8 py-16">
-              <h2 className="text-4xl lg:text-5xl font-bold mb-6 text-center">Success Stories</h2>
+              <h2 className={`text-4xl lg:text-5xl font-bold mb-6 text-center ${colors.text} transition-colors duration-300`}>Success Stories</h2>
 
               <div className="relative">
                 <motion.div
@@ -185,7 +192,7 @@ const HomePage = ({ user, onLogout, onAnimalClick, onNavigateToGrooming, onNavig
                   animate={{ opacity: 1, x: 0 }}
                   exit={{ opacity: 0, x: -100 }}
                   transition={{ duration: 0.5 }}
-                  className="story-card bg-white/10 backdrop-blur-sm rounded-3xl p-8 border border-white/20 max-w-4xl mx-auto"
+                  className={`story-card ${colors.card} backdrop-blur-sm rounded-3xl p-8 border ${colors.border} max-w-4xl mx-auto transition-all duration-300`}
                 >
                   <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-center">
                     {/* Pet Image */}
@@ -204,8 +211,8 @@ const HomePage = ({ user, onLogout, onAnimalClick, onNavigateToGrooming, onNavig
 
                     {/* Story Text */}
                     <div className="lg:col-span-2 space-y-6">
-                      <h3 className="text-3xl font-bold text-white">{stories[currentStoryIndex].petName}</h3>
-                      <div className="flex flex-wrap gap-4 text-white/70 mb-4">
+                      <h3 className={`text-3xl font-bold ${colors.text} transition-colors duration-300`}>{stories[currentStoryIndex].petName}</h3>
+                      <div className={`flex flex-wrap gap-4 ${colors.textMuted} mb-4 transition-colors duration-300`}>
                         <span>🏠 {stories[currentStoryIndex].adopterName}</span>
                         <span>📍 {stories[currentStoryIndex].location}</span>
                         <span>📅 {new Date(stories[currentStoryIndex].adoptionDate).toLocaleDateString()}</span>
@@ -213,7 +220,7 @@ const HomePage = ({ user, onLogout, onAnimalClick, onNavigateToGrooming, onNavig
                       <div className="bg-orange-100 text-orange-800 px-3 py-1 rounded-full text-sm font-medium inline-block mb-4">
                         {stories[currentStoryIndex].breed}
                       </div>
-                      <p className="text-white/90 leading-relaxed text-lg">
+                      <p className={`${colors.textSecondary} leading-relaxed text-lg transition-colors duration-300`}>
                         {stories[currentStoryIndex].story}
                       </p>
                     </div>
@@ -266,6 +273,7 @@ const HomePage = ({ user, onLogout, onAnimalClick, onNavigateToGrooming, onNavig
           </motion.div>
         )}
       </AnimatePresence>
+      </div>
 
       {/* ✅ Chatbot Floating (independent of stories modal) */}
       <div className="fixed bottom-4 right-4">

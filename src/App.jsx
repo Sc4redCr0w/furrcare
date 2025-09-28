@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { ThemeProvider } from "./contexts/ThemeContext.jsx";
 import Login from "./Login.jsx";
 import HomePage from "./HomePage.jsx";
 import GroomingPage from "./GroomingPage.jsx";
@@ -162,9 +163,9 @@ function App() {
   };
 
   return (
-    <>
+    <ThemeProvider>
       {renderCurrentPage()}
-    </>
+    </ThemeProvider>
   );
 }
 
